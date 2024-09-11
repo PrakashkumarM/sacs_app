@@ -11,4 +11,18 @@ class CustomColors {
   static Color selectionColor = HexColor.fromHex('#E61C41');
   static Color unSelectionColor = HexColor.fromHex('#2A3547');
   static Color transparent = Colors.transparent;
+  static Color lightRed = HexColor.fromHex('#FFDCDF');
+  static Color darkRedText = HexColor.fromHex('#92010E');
+  static Color sandalColor = HexColor.fromHex('#FFEED6');
+  static Color darkSandalColor = HexColor.fromHex('#7E5418');
+  static Color whiteCard = HexColor.fromHex('#FFF9F1');
+  static Color greenColor = HexColor.fromHex('#E6FFE9');
+  static Color darkGreenColor = HexColor.fromHex('#408849');
+  static Color darkGrey = HexColor.fromHex('#555555');
+  static Color lightGrey = HexColor.fromHex('#D9D9D9');
+  static Color lightBlueBackground = HexColor.fromHex('#F0F5F9');
+  static Color success = Colors.greenAccent;
+  static Color error = Colors.redAccent;
+  static Color placeholderGrey = HexColor.fromHex('#B1B1B1');
+  static Color borderGrey = HexColor.fromHex('#DFE5EF');
 }

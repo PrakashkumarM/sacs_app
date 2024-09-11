@@ -24,4 +24,5 @@ class TextString {
   static const String homeIconText = "Home";
   static const String enquiryIconText = "Enquiries";
   static const String salesIconText = "Sales";
+  static const String salesListIconText = "Sales List";
 }

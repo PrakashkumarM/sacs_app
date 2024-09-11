@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sacs_app/app/core/values/colors.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? leading;
   final List<Widget>? actions;
   final bool centerTitle;
-  final Widget? locationWidget; // For the location selection app bar
+  final Widget? locationWidget;
 
   const CommonAppBar({
     Key? key,
@@ -19,29 +20,46 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: CustomColors.white,
       elevation: 0,
-      leading: leading ??
-          IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
+      automaticallyImplyLeading: false, // Removes default back button
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 16.0),
+        child: CircleAvatar(
+          backgroundImage: AssetImage('assets/images/profile.jpg'),
+        ),
+      ),
       title: locationWidget != null
-          ? Row(
-              children: [
-                locationWidget!,
-                Spacer(),
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/profile.jpg'),
-                ),
-              ],
-            )
+          ? locationWidget!
           : Text(
               title,
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                color: CustomColors.black,
+                fontSize: 16,
+              ),
             ),
-      actions: actions,
-      centerTitle: centerTitle,
+      centerTitle: false, // Align title to the left
+      actions: [
+        Row(
+          children: [
+            Icon(Icons.logout, color: CustomColors.black),
+            SizedBox(width: 8),
+            TextButton(
+              onPressed: () {
+                // Add log out functionality here
+              },
+              child: Text(
+                'Log Out',
+                style: TextStyle(
+                  color: CustomColors.black,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            SizedBox(width: 16), // Padding on the right
+          ],
+        ),
+      ],
     );
   }
 

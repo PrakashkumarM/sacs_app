@@ -7,6 +7,10 @@ class NavigationHelper {
     return Get.toNamed<T>(routeName, arguments: arguments);
   }
 
+  static Future<T?>? navigateToScreen<T>(dynamic page, {dynamic arguments}) {
+    return Get.to<T>(page, arguments: arguments);
+  }
+
   // Navigate and replace the current route with a named route
   static Future<T?>? navigateAndReplace<T>(String routeName,
       {dynamic arguments}) {

@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:sacs_app/app/common/widgets/main_layout.dart';
+import 'package:sacs_app/app/screens/enquiry/controller.dart';
+
+final duration =
+    const Duration(milliseconds: 3000); // Duration for slower animation
 
 class SalesScreen extends StatelessWidget {
-  const SalesScreen({super.key});
+  final EnquiryController _controller =
+      Get.put(EnquiryController()); // Initialize the controller
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("SalesScreen"),
+    return MainLayout(
+      title: 'Sales List',
+      showBackButton: false,
+      isFilterAvailable: true,
+      isSearchAvailable: true,
+      body: Stack(
+        children: [
+          // Your main content
+          Text('Sales screen'),
+          // FAB positioned at the bottom-right corner
+        ],
+      ),
+      showFloatingActionButton: true, // Display the FAB
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sacs_app/app/core/values/colors.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
 
 class CompanyName extends StatelessWidget {
@@ -13,7 +14,7 @@ class CompanyName extends StatelessWidget {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: CustomColors.black,
           ),
         ),
       ),

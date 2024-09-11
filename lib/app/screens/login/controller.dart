@@ -1,26 +1,32 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sacs_app/app/core/utils/navigation_helper.dart';
+import 'package:sacs_app/app/data/controllers/user_controller.dart';
+import 'package:sacs_app/app/data/models/user_model.dart';
+import 'package:sacs_app/app/data/services/auth_session_service.dart';
+import 'package:sacs_app/app/data/services/login_service.dart';
 
 class LoginController extends GetxController {
+  final LoginService _loginService = LoginService();
+  final AuthSessionService _authSessionService = AuthSessionService();
+  final UserController userController = Get.put(UserController());
+
   var obscureText = true.obs;
+  var isLoading = false.obs;
+  // Create controllers for email and password input
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  void formSubmit() {
-    NavigationHelper.navigateAndReplace('dashboard');
-  }
-
+  // Toggle password visibility
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
   }
 
+  // Form validation logic
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your username or email';
+      return 'Please enter your username';
     }
-    // Simple email validation
-    // final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-    // if (!emailRegex.hasMatch(value)) {
-    //   return 'Enter a valid email address';
-    // }
     return null;
   }
 
@@ -28,10 +34,31 @@ class LoginController extends GetxController {
     if (value == null || value.isEmpty) {
       return 'Please enter your password';
     }
-    final passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*\W).{8,}$');
-    if (!passwordRegex.hasMatch(value)) {
-      return 'Password must be at least 8 characters long, with one uppercase letter and one symbol';
-    }
     return null;
+  }
+
+  // Form submission logic
+  Future<void> formSubmit(String username, String password) async {
+    if (username.isNotEmpty && password.isNotEmpty) {
+      // Call login service to handle API request
+      print('bef');
+
+      final user = await _loginService.login(username, password);
+      print(user);
+
+      if (user != null) {
+        // Handle successful login
+        print('User logged in: $user');
+        // Store user details in sesison
+        _authSessionService.saveLoginSession(user);
+        // Store user details in the UserController
+        userController.saveUserDetails(user);
+        // Navigate to dashboars
+        NavigationHelper.navigateAndClearStack('/dashboard');
+      } else {
+        // Handle login failure
+        print('Login failed');
+      }
+    }
   }
 }

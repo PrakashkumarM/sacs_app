@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
     Get.put(SplashController());
     // Set status bar to transparent
     ScreenUtils.setStatusBarColor(
-      color: Colors.transparent,
+      color: CustomColors.transparent,
       iconBrightness: Brightness.light,
     );
 

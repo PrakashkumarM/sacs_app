@@ -60,6 +60,8 @@ class LoginForm extends StatelessWidget {
               ),
               SizedBox(height: 8), // Space between label and input field
               TextFormField(
+                controller: loginController
+                    .emailController, // Bind controller to input field
                 decoration: InputDecoration(
                   hintText: TextString.userNameHintText,
                   border: OutlineInputBorder(
@@ -82,6 +84,8 @@ class LoginForm extends StatelessWidget {
               SizedBox(height: 8), // Space between label and input field
               Obx(
                 () => TextFormField(
+                  controller: loginController
+                      .passwordController, // Bind controller to input field
                   obscureText: loginController.obscureText.value,
                   decoration: InputDecoration(
                     errorMaxLines: 2,
@@ -110,8 +114,11 @@ class LoginForm extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Perform login action
-                      loginController.formSubmit();
+                      // Pass the email and password to the formSubmit function
+                      loginController.formSubmit(
+                        loginController.emailController.text,
+                        loginController.passwordController.text,
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
