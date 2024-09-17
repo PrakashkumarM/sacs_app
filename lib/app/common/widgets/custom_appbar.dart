@@ -21,7 +21,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: CustomColors.white,
-      elevation: 0,
+      elevation: 6, // Increase elevation to create a shadow effect
+      shadowColor: CustomColors.grey.withOpacity(0.1), // Control shadow color
+      surfaceTintColor: CustomColors.transparent,
       leading: showBackButton
           ? IconButton(
               icon: Icon(Icons.arrow_back, color: CustomColors.black),
@@ -49,7 +51,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   icon:
                       Icon(Icons.search, color: CustomColors.unSelectionColor),
                   onPressed: () {
-                    // Add search functionality here
                     print('Search tapped');
                   },
                 ),
@@ -58,7 +59,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   icon: Icon(CustomIcons.filter,
                       color: CustomColors.unSelectionColor),
                   onPressed: () {
-                    // Add filter functionality here
                     print('Filter tapped');
                   },
                 ),

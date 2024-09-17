@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
+import 'package:sacs_app/app/core/values/text_string.dart';
 import 'package:sacs_app/app/screens/enquiry/controller.dart';
 
 final duration =
@@ -14,7 +15,7 @@ class SalesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      title: 'Sales List',
+      title: TextString.salesListIconText,
       showBackButton: false,
       isFilterAvailable: true,
       isSearchAvailable: true,

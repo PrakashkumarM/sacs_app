@@ -14,19 +14,21 @@ class MainLayout extends StatelessWidget {
   final bool isSearchAvailable;
   final bool isFilterAvailable;
   final bool showFloatingActionButton; // Bool to control FAB visibility
+  final Function()? onFabTap; // Nullable function, coming from parent
 
-  const MainLayout({
-    Key? key,
-    required this.body,
-    this.onProfileTap,
-    this.onLogoutTap,
-    this.isDashboard = false,
-    this.title = '',
-    this.showBackButton = false,
-    this.isSearchAvailable = false,
-    this.isFilterAvailable = false,
-    this.showFloatingActionButton = false, // Default is no FAB
-  }) : super(key: key);
+  const MainLayout(
+      {Key? key,
+      required this.body,
+      this.onProfileTap,
+      this.onLogoutTap,
+      this.isDashboard = false,
+      this.title = '',
+      this.showBackButton = false,
+      this.isSearchAvailable = false,
+      this.isFilterAvailable = false,
+      this.showFloatingActionButton = false, // Default is no FAB
+      this.onFabTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +46,20 @@ class MainLayout extends StatelessWidget {
               isFilterAvailable: isFilterAvailable,
             ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: body, // The different content for each page
       ),
       floatingActionButton: showFloatingActionButton
-          ? FloatingActionButton(
-              onPressed: () {
-                // Default action for FAB, can be replaced or left empty
-              },
-              child: Icon(Icons.add), // Default plus icon
+          ? FloatingActionButton.small(
+              shape: const CircleBorder(),
+              heroTag: title,
+              backgroundColor: CustomColors.selectionColor,
+              onPressed: onFabTap,
+              child: Icon(
+                Icons.add,
+                size: 30,
+                color: CustomColors.white,
+              ), // Default plus icon
               tooltip: 'Add',
             )
           : null, // No FAB if showFloatingActionButton is false

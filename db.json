@@ -12,6 +12,379 @@
         "password": "123",
         "role": "sales"
       }
+    ],
+    "enquiries": [
+     { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine Lg wasing machine sasasasa",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jane",
+      "mobile": "9849849845",
+      "enquiry_date": "28/05/2024",
+      "product_name": "Lg wasing machine",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Jack",
+      "mobile": "9299299299",
+      "enquiry_date": "24/05/2024",
+      "product_name": "Lg Frige jkabhsn2024",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Gaabe",
+      "mobile": "8448448445",
+      "enquiry_date": "4/02/2021",
+      "product_name": "Haier TV sas41",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Daven",
+      "mobile": "7848748714",
+      "enquiry_date": "3/02/2023",
+      "product_name": "Sony speaker soundbar",
+      "enquiry_status": "closed"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    },
+    { 
+      "customer_name": "Abdul",
+      "mobile": "9459459458",
+      "enquiry_date": "5/07/2022",
+      "product_name": "Samsung Home theatre",
+      "enquiry_status": "enquired"
+    }
     ]
 }
   

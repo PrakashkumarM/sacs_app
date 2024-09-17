@@ -25,4 +25,12 @@ class CustomColors {
   static Color error = Colors.redAccent;
   static Color placeholderGrey = HexColor.fromHex('#B1B1B1');
   static Color borderGrey = HexColor.fromHex('#DFE5EF');
+  static Color successDarktext = HexColor.fromHex('#0F5C2E');
+  static Color dangerDarktext = HexColor.fromHex('#92010E');
+  static Color successLightBackground = HexColor.fromHex('#9AEFBC');
+  static Color dangerLightBackground = HexColor.fromHex('#FEBDC3');
+  static Color productBadgeBackgroundColor = HexColor.fromHex('#B6F3FF');
+  static Color productBadgeColor = HexColor.fromHex('#007A93');
+  static Color greenBadge = HexColor.fromHex('#E9FBF0');
+  static Color redBadge = HexColor.fromHex('#FFF0F1');
 }

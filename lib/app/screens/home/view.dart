@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/core/values/text_string.dart';
 import 'package:sacs_app/app/screens/home/contoller.dart';
-import 'package:sacs_app/app/screens/home/widgets/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -19,7 +20,6 @@ class HomeScreen extends StatelessWidget {
       isDashboard: true,
       body: Column(
         children: [
-          SizedBox(height: 10),
           _buildGreetingSection(),
 
           // Wrap the scrollable content in Expanded to avoid overflow
@@ -48,6 +48,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 10),
           Text(
             'Monday 26 July',
             style: TextStyle(
@@ -78,6 +79,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 10),
         ],
       ),
     );
@@ -92,10 +94,15 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment:
               MainAxisAlignment.spaceBetween, // Add spacing between cards
           children: [
-            _buildStatCard("Customers", "96", CustomColors.lightRed,
-                CustomColors.darkRedText, 'customerIcon', screenWidth),
-            _buildStatCard("Enquiries", "690", CustomColors.sandalColor,
-                CustomColors.darkSandalColor, 'enquiryIcon', screenWidth),
+            _buildStatCard(TextString.customers, "96", CustomColors.lightRed,
+                CustomColors.darkRedText, TextString.customerIcon, screenWidth),
+            _buildStatCard(
+                TextString.enquiries,
+                "690",
+                CustomColors.sandalColor,
+                CustomColors.darkSandalColor,
+                TextString.enquiryIcon,
+                screenWidth),
           ],
         ),
         SizedBox(height: 16),
@@ -103,10 +110,20 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment:
               MainAxisAlignment.spaceBetween, // Add spacing between cards
           children: [
-            _buildStatCard("Sales", "356", CustomColors.whiteCard,
-                CustomColors.unSelectionColor, 'salesIcon', screenWidth),
-            _buildStatCard("Payments", "96K", CustomColors.greenColor,
-                CustomColors.darkGreenColor, 'paymentsIcon', screenWidth),
+            _buildStatCard(
+                TextString.salesIconText,
+                "356",
+                CustomColors.whiteCard,
+                CustomColors.unSelectionColor,
+                TextString.salesIcon,
+                screenWidth),
+            _buildStatCard(
+                TextString.payments,
+                "96K",
+                CustomColors.greenColor,
+                CustomColors.darkGreenColor,
+                TextString.paymentsIcon,
+                screenWidth),
           ],
         ),
       ],
@@ -178,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Top Performers Jul - 2024',
+                    '${TextString.topPerformers} Jul - 2024',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 17.0,
@@ -186,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 2),
                   Text(
-                    'Best Employees',
+                    TextString.bestEmployees,
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14.0,
@@ -213,8 +230,8 @@ class HomeScreen extends StatelessWidget {
                   Obx(() {
                     return Text(
                       homeController.isExpanded.value
-                          ? 'Collapse All'
-                          : 'Expand All',
+                          ? TextString.collapseAll
+                          : TextString.expandAll,
                       style: TextStyle(color: CustomColors.white),
                     );
                   }),
@@ -279,7 +296,7 @@ class HomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
+            color: CustomColors.grey.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 2,
             offset: Offset(0, 2), // Shadow position
@@ -292,8 +309,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RoundedImage(
-                  radius: 25.0,
-                  backgroundImageUrl: 'assets/images/profile.jpeg'),
+                  radius: 25.0, backgroundImageUrl: TextString.profilePath),
               SizedBox(width: 12.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,7 +321,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    'Sales Staff',
+                    TextString.salesStaff,
                     style: TextStyle(
                       color: CustomColors.unSelectionColor,
                       fontSize: 14.0,
@@ -326,9 +342,11 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildStatColumn('Enquiries', performer.enquiries.toString()),
-                _buildStatColumn('Sales', performer.sales.toString()),
-                _buildStatColumn('Payments', '${performer.payments}'),
+                _buildStatColumn(
+                    TextString.enquiries, performer.enquiries.toString()),
+                _buildStatColumn(
+                    TextString.salesIconText, performer.sales.toString()),
+                _buildStatColumn(TextString.payments, '${performer.payments}'),
               ],
             ),
           ),

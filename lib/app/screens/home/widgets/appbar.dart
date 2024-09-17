@@ -18,6 +18,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: CustomColors.white,
+      surfaceTintColor: CustomColors.transparent,
       elevation: 0,
       titleSpacing: 0, // Ensure no extra space before the title content
       title: Padding(

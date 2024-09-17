@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sacs_app/app/common/widgets/custom_appbar.dart';
+
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/core/values/text_string.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      title: 'Edit Profile',
+      title: TextString.editProfile,
       showBackButton: true,
       body: SingleChildScrollView(
         // padding: const EdgeInsets.all(16.0),
@@ -22,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   RoundedImage(
-                    backgroundImageUrl: 'assets/images/profile.jpeg',
+                    backgroundImageUrl: TextString.profilePath,
                     radius: 50,
                   ),
                   Positioned(
@@ -49,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Full Name Label & Field
             Text(
-              'Full Name',
+              TextString.fullName,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -89,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Email Label & Field
             Text(
-              'Email',
+              TextString.email,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -128,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Password Label & Field
             Text(
-              'Password',
+              TextString.password,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -179,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
                   width: 80, // Adjust width as per your requirement
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[300],
+                      backgroundColor: CustomColors.lightGrey,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -190,7 +191,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      'Cancel',
+                      TextString.cancel,
                       style: TextStyle(color: CustomColors.black),
                     ),
                   ),
@@ -212,7 +213,7 @@ class ProfileScreen extends StatelessWidget {
                       // Handle save action
                     },
                     child: Text(
-                      'Save Changes',
+                      TextString.saveChanges,
                       style: TextStyle(color: CustomColors.white),
                     ),
                   ),
