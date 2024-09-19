@@ -1,97 +1,99 @@
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:sacs_app/app/core/values/colors.dart';
 
 class StepperHeader extends StatelessWidget {
-  final int currentStep;
+  final RxInt currentStep;
   final List<String> steps;
+  final Function onStepReached;
 
-  const StepperHeader(
-      {Key? key, required this.currentStep, required this.steps})
-      : super(key: key);
+  const StepperHeader({
+    Key? key,
+    required this.currentStep,
+    required this.steps,
+    required this.onStepReached,
+  }) : super(key: key);
+
+  List<EasyStep> _buildSteps() {
+    return steps.asMap().entries.map((entry) {
+      int index = entry.key;
+      print('its entry data => ${entry}');
+
+      String stepTitle = entry.value;
+
+      return EasyStep(
+          customStep: Text(
+            (index + 1).toString(),
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                color: index == currentStep.value
+                    ? CustomColors.selectionColor
+                    : index < currentStep.value
+                        ? CustomColors.white
+                        : CustomColors.grey),
+          ),
+          customTitle: Align(
+            alignment: Alignment.center,
+            child: Text(
+              stepTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+                color: index == currentStep.value
+                    ? CustomColors.darkGrey
+                    : CustomColors.grey,
+              ),
+            ),
+          ));
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Horizontal scrollable row for steps
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Column(
-            children: [
-              // Step circles and connecting lines
-              Row(
-                children: List.generate(steps.length, (index) {
-                  return Row(
-                    children: [
-                      _buildStepCircle(
-                          index: index, isCurrent: currentStep == index + 1),
-                      if (index != steps.length - 1)
-                        _buildStepLine(isActive: currentStep > index + 1),
-                    ],
-                  );
-                }),
-              ),
-              // Step labels below circles
-              Row(
-                children: List.generate(steps.length, (index) {
-                  return SizedBox(
-                    width: 120, // Width to match the circle or adjust as needed
-                    child: Center(
-                      child: Text(
-                        steps[index],
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            ],
+    return Obx(() {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            color: Colors.white,
+            height: 100,
+            width: double.infinity,
           ),
-        ),
-      ],
-    );
-  }
-
-  // Widget to build the step circle
-  Widget _buildStepCircle({required int index, required bool isCurrent}) {
-    bool isCompleted = currentStep > index + 1;
-    bool isUncompleted = currentStep < index + 1;
-
-    return Container(
-      width: 48,
-      height: 48,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isCompleted
-            ? CustomColors.selectionColor // Completed step
-            : isUncompleted
-                ? CustomColors.grey // Uncompleted step
-                : CustomColors.white, // Current step
-        border: Border.all(
-          color: isCurrent ? CustomColors.selectionColor : CustomColors.grey,
-          width: 2,
-        ),
-      ),
-      child: Center(
-        child: Text(
-          (index + 1).toString(),
-          style: TextStyle(
-            color:
-                isCompleted ? CustomColors.white : CustomColors.selectionColor,
-            fontWeight: FontWeight.bold,
+          Positioned(
+            top: 13.0,
+            right: 0.0,
+            bottom: 0.0,
+            left: 0.0,
+            child: EasyStepper(
+              titlesAreLargerThanSteps: true,
+              stepRadius: 14,
+              borderThickness: 2.5,
+              alignment: Alignment.bottomCenter,
+              internalPadding: 10,
+              defaultStepBorderType: BorderType.normal,
+              finishedStepBackgroundColor: CustomColors.selectionColor,
+              activeStepBackgroundColor: CustomColors.white,
+              unreachedStepBackgroundColor: CustomColors.white,
+              activeStepBorderColor: CustomColors.selectionColor,
+              unreachedStepBorderColor: CustomColors.grey,
+              enableStepTapping: false,
+              activeStep: currentStep.value,
+              showLoadingAnimation: false,
+              lineStyle: LineStyle(
+                lineType: LineType.normal,
+                lineLength: 100,
+                defaultLineColor: CustomColors.grey,
+                lineSpace: 15,
+                lineThickness: 1.5,
+              ),
+              steps: _buildSteps(),
+            ),
           ),
-        ),
-      ),
-    );
-  }
-
-  // Widget to build the line between steps
-  Widget _buildStepLine({required bool isActive}) {
-    return Container(
-      width: 100, // Adjust line width as necessary
-      height: 2,
-      color: isActive ? CustomColors.selectionColor : CustomColors.grey,
-    );
+        ],
+      );
+    });
   }
 }

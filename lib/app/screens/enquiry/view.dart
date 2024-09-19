@@ -17,7 +17,7 @@ class EnquiryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EnquiryController controller = Get.find();
+    final EnquiryController controller = Get.put(EnquiryController());
 
     return MainLayout(
       title: 'Enquiry',
@@ -147,7 +147,7 @@ class EnquiryScreen extends StatelessWidget {
   }
 
   Widget _buildExpandedSection(BuildContext context) {
-    final EnquiryController controller = Get.find();
+    final EnquiryController controller = Get.put(EnquiryController());
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Row(
@@ -166,7 +166,7 @@ class EnquiryScreen extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context, IconData icon, String label,
       {Color iconColor = CustomColors.grey}) {
-    final EnquiryController controller = Get.find();
+    final EnquiryController controller = Get.put(EnquiryController());
 
     return Column(
       children: [

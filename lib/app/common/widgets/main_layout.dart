@@ -14,21 +14,24 @@ class MainLayout extends StatelessWidget {
   final bool isSearchAvailable;
   final bool isFilterAvailable;
   final bool showFloatingActionButton; // Bool to control FAB visibility
+  final bool stepperAvailable;
+
   final Function()? onFabTap; // Nullable function, coming from parent
 
-  const MainLayout(
-      {Key? key,
-      required this.body,
-      this.onProfileTap,
-      this.onLogoutTap,
-      this.isDashboard = false,
-      this.title = '',
-      this.showBackButton = false,
-      this.isSearchAvailable = false,
-      this.isFilterAvailable = false,
-      this.showFloatingActionButton = false, // Default is no FAB
-      this.onFabTap})
-      : super(key: key);
+  const MainLayout({
+    Key? key,
+    required this.body,
+    this.onProfileTap,
+    this.onLogoutTap,
+    this.isDashboard = false,
+    this.title = '',
+    this.showBackButton = false,
+    this.isSearchAvailable = false,
+    this.isFilterAvailable = false,
+    this.showFloatingActionButton = false, // Default is no FAB
+    this.onFabTap,
+    this.stepperAvailable = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +48,12 @@ class MainLayout extends StatelessWidget {
               isSearchAvailable: isSearchAvailable,
               isFilterAvailable: isFilterAvailable,
             ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: body, // The different content for each page
-      ),
+      body: stepperAvailable
+          ? Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: body, // The different content for each page
+            )
+          : body,
       floatingActionButton: showFloatingActionButton
           ? FloatingActionButton.small(
               shape: const CircleBorder(),
