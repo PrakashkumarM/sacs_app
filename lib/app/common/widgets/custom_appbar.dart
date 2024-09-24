@@ -56,8 +56,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               if (isFilterAvailable)
                 IconButton(
-                  icon: Icon(CustomIcons.filter,
-                      color: CustomColors.unSelectionColor),
+                  icon: Icon(
+                    CustomIcons.filter,
+                    color: CustomColors.unSelectionColor,
+                    size: 15,
+                  ),
                   onPressed: () {
                     print('Filter tapped');
                   },

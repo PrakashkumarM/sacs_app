@@ -1,6 +1,5 @@
+import 'dart:io'; // Import this to use File
 import 'package:flutter/material.dart';
-
-import 'package:sacs_app/app/core/values/colors.dart';
 
 class RoundedImage extends StatelessWidget {
   final String backgroundImageUrl;
@@ -13,13 +12,16 @@ class RoundedImage extends StatelessWidget {
     this.radius = 15.0,
     this.backgroundColor = Colors.transparent,
   });
+
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundImage: AssetImage(backgroundImageUrl),
-      radius: radius, // Adjust radius to match the profile image size
-      backgroundColor:
-          backgroundColor, // Transparent background to avoid extra space
+      backgroundImage: backgroundImageUrl.startsWith('/data/user/')
+          ? FileImage(File(backgroundImageUrl)) // Use FileImage for file paths
+          : AssetImage('assets/images/profile.jpeg')
+              as ImageProvider, // Use a default image
+      radius: radius,
+      backgroundColor: backgroundColor,
     );
   }
 }

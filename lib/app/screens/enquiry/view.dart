@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sacs_app/app/common/widgets/bottom_sheet.dart';
+import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
@@ -102,7 +103,8 @@ class EnquiryScreen extends StatelessWidget {
                             SizedBox(height: 10),
                             Row(
                               children: [
-                                Icon(Icons.person, color: CustomColors.grey),
+                                Icon(CustomIcons.user,
+                                    color: CustomColors.grey),
                                 const SizedBox(width: 4.0),
                                 Text(
                                   enquiry.customerName ?? 'N/A',
@@ -112,7 +114,8 @@ class EnquiryScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Spacer(),
-                                Icon(Icons.phone, color: CustomColors.grey),
+                                Icon(CustomIcons.call,
+                                    color: CustomColors.grey),
                                 const SizedBox(width: 4.0),
                                 Text(
                                   enquiry.mobile ?? 'N/A',
@@ -153,49 +156,42 @@ class EnquiryScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildActionButton(context, Icons.comment, TextString.comments),
-          _buildActionButton(context, Icons.edit, TextString.edit),
-          _buildActionButton(context, Icons.shopping_cart, TextString.sale),
-          _buildActionButton(context, Icons.remove_red_eye, TextString.details),
-          _buildActionButton(context, Icons.close, TextString.close,
+          _buildActionButton(CustomIcons.tablerMessage, TextString.comments,
+              () => {_showBottomSheet(context, TextString.comments)}),
+          _buildActionButton(CustomIcons.editPencil, TextString.edit,
+              () => {NavigationHelper.navigateToScreen(EnquiryForm())}),
+          _buildActionButton(Icons.shopping_cart, TextString.sale,
+              () => {NavigationHelper.navigateToScreen(MakeSalesPage())}),
+          _buildActionButton(Icons.remove_red_eye, TextString.details,
+              () => {_showBottomSheet(context, TextString.details)}),
+          _buildActionButton(CustomIcons.close, TextString.close,
+              () => {controller.showCloseEnquiryDialog(context)},
               iconColor: CustomColors.selectionColor),
         ],
       ),
     );
   }
 
-  Widget _buildActionButton(BuildContext context, IconData icon, String label,
+  Widget _buildActionButton(IconData icon, String label, onIconTap,
       {Color iconColor = CustomColors.grey}) {
     final EnquiryController controller = Get.put(EnquiryController());
 
     return Column(
       children: [
         GestureDetector(
-          onTap: () {
-            if (icon == Icons.comment || icon == Icons.remove_red_eye) {
-              _showBottomSheet(context, label);
-            }
-            if (icon == Icons.close) {
-              controller.showCloseEnquiryDialog(context);
-            }
-            if (icon == Icons.shopping_cart) {
-              NavigationHelper.navigateToScreen(MakeSalesPage());
-            }
-            if (icon == Icons.edit) {
-              print('here');
-              NavigationHelper.navigateToScreen(EnquiryForm());
-            }
-          },
+          onTap: onIconTap,
           child: Container(
             decoration: BoxDecoration(
-              color: CustomColors.lightGrey,
+              color: iconColor == CustomColors.selectionColor
+                  ? CustomColors.lightRed
+                  : CustomColors.lightGrey,
               borderRadius: BorderRadius.circular(8),
             ),
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               icon,
               color: iconColor,
-              size: 18.0,
+              size: 15.0,
             ),
           ),
         ),

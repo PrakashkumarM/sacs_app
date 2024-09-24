@@ -5,6 +5,7 @@ import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 class ProfileController extends GetxController {
   var obscureText = true.obs;
   var isLoading = false.obs;
+  RxString profileImagePath = 'assets/images/profile.jpeg'.obs;
 
   // Create controllers for email and password input
   final TextEditingController nameController = TextEditingController();
@@ -14,6 +15,10 @@ class ProfileController extends GetxController {
   // Toggle password visibility
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
+  }
+
+  void updateImage(imgPath) {
+    profileImagePath.value = imgPath;
   }
 
   // Form validation logic

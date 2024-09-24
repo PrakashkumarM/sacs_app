@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/core/values/text_string.dart';
 
 class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function() onLogoutTap;
@@ -35,7 +36,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: RoundedImage(
               radius: 23.0,
-              backgroundImageUrl: 'assets/images/profile.jpeg',
+              backgroundImageUrl: TextString.profilePath,
             ),
           ),
         ),

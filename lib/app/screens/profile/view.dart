@@ -1,45 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
+import 'package:sacs_app/app/data/services/image_picker_service.dart';
+import 'package:sacs_app/app/screens/profile/controller.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final ImagePickerService _imagePickerService = ImagePickerService();
+  final ProfileController profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return MainLayout(
       title: TextString.editProfile,
       showBackButton: true,
       body: SingleChildScrollView(
-        // padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Aligns labels to start
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
             // Profile Image
             Center(
               child: Stack(
                 children: [
-                  RoundedImage(
-                    backgroundImageUrl: TextString.profilePath,
-                    radius: 50,
-                  ),
+                  Obx(() {
+                    return RoundedImage(
+                      backgroundImageUrl:
+                          profileController.profileImagePath.value,
+                      radius: 50,
+                    );
+                  }),
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: CustomColors.error,
-                      ),
-                      child: Icon(
-                        Icons.edit,
-                        color: CustomColors.white,
-                        size: 18,
+                    child: GestureDetector(
+                      onTap: () => _imagePickerService.showImageSourceDialog(
+                          context,
+                          profileController.updateImage), // Show dialog on tap
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: CustomColors.error,
+                        ),
+                        child: Icon(
+                          CustomIcons.editPencil,
+                          color: CustomColors.white,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ),

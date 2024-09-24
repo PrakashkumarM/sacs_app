@@ -23,36 +23,86 @@ class CustomIcons {
   static const IconData salesListIcon =
       IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData filter =
-      IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xf0b0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData search =
-      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData taskList =
+      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData backArrow =
+      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData target =
+      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData medal =
+      IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData notifcation =
+      IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData salesmanEnquiry =
+      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tablerMessage =
+      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData user =
+      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData editPencil =
+      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData trash =
+      IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData refreshWithTick =
+      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData gallery =
+      IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar =
+      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData close =
+      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData truckDelivery =
+      IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData rupeeBag =
+      IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData call =
+      IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData rightArrow =
+      IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData truck =
+      IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData refreshWait =
+      IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+
+  // Icon mapping
+  static const Map<String, IconData> _iconMap = {
+    'home': home,
+    'enquiry': enquiry,
+    'sale': sale,
+    'salesIcon': salesIcon,
+    'customerIcon': customerIcon,
+    'enquiryIcon': enquiryIcon,
+    'paymentsIcon': paymentsIcon,
+    'salesListIcon': salesListIcon,
+    'search': search,
+    'filter': filter,
+    'taskList': taskList,
+    'backArrow': backArrow,
+    'target': target,
+    'medal': medal,
+    'notifcation': notifcation,
+    'salesmanEnquiry': salesmanEnquiry,
+    'tablerMessage': tablerMessage,
+    'user': user,
+    'editPencil': editPencil,
+    'trash': trash,
+    'refreshWithTick': refreshWithTick,
+    'gallery': gallery,
+    'calendar': calendar,
+    'close': close,
+    'truckDelivery': truckDelivery,
+    'rupeeBag': rupeeBag,
+    'call': call,
+    'rightArrow': rightArrow,
+    'truck': truck,
+    'refreshWait': refreshWait
+  };
 
   // Method to get IconData from icon name
   static IconData getIconData(String iconName) {
-    switch (iconName) {
-      case 'home':
-        return home;
-      case 'enquiry':
-        return enquiry;
-      case 'sale':
-        return sale;
-      case 'salesIcon':
-        return salesIcon;
-      case 'customerIcon':
-        return customerIcon;
-      case 'enquiryIcon':
-        return enquiryIcon;
-      case 'paymentsIcon':
-        return paymentsIcon;
-      case 'salesListIcon':
-        return salesListIcon;
-      case 'search':
-        return search;
-      case 'filter':
-        return filter;
-      // Add more cases as needed
-      default:
-        return home; // Default icon
-    }
+    return _iconMap[iconName] ?? home; // Default icon if not found
   }
 }

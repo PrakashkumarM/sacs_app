@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/core/values/text_string.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -26,7 +27,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Padding(
         padding: const EdgeInsets.only(left: 16.0),
         child: CircleAvatar(
-          backgroundImage: AssetImage('assets/images/profile.jpg'),
+          backgroundImage: AssetImage(TextString.profilePath),
         ),
       ),
       title: locationWidget != null

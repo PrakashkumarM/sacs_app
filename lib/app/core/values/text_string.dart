@@ -21,7 +21,7 @@ class TextString {
   static const String bottomFrameLogoPath = "assets/images/bottom_frame.png";
   static const String productLogoPath = "assets/images/product_logo.png";
   static const String splashBackgroundPath = "assets/images/background.png";
-  static const String profilePath = "assets/images/profile.png";
+  static const String profilePath = "assets/images/profile.jpeg";
 
   // Bottom bar icons
   static const String homeIconText = "Home";

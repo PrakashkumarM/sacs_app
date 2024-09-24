@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
+import 'package:sacs_app/app/common/widgets/text_button_with_icon.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
 import 'package:sacs_app/app/screens/home/contoller.dart';
@@ -213,36 +214,21 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            TextButton(
-              onPressed: () {
-                homeController.toggleExpandAll();
+            CustomTextButtonWithIcon(
+              onTap: () {
+                homeController.isExpanded.toggle();
               },
-              style: TextButton.styleFrom(
-// Reduce padding here
-                backgroundColor: CustomColors.selectionColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-              ),
-              child: Row(
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  Obx(() {
-                    return Text(
-                      homeController.isExpanded.value
-                          ? TextString.collapseAll
-                          : TextString.expandAll,
-                      style: TextStyle(color: CustomColors.white),
-                    );
-                  }),
-                  Icon(
-                    homeController.isExpanded.value
-                        ? Icons.keyboard_arrow_down
-                        : Icons.keyboard_arrow_right,
-                    color: CustomColors.white,
-                  ),
-                ],
-              ),
+              text: [
+                'Expand All',
+                'Collapse All'
+              ], // Provide texts for expanded and collapsed states
+              icon: [
+                Icons.keyboard_arrow_right,
+                Icons.keyboard_arrow_down
+              ], // Provide icons for both states
+              isDynamic: true, // Enable dynamic behavior
+              isExpanded:
+                  homeController.isExpanded, // Pass the RxBool from the parent
             ),
           ],
         ),

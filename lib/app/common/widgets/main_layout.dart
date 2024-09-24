@@ -50,7 +50,7 @@ class MainLayout extends StatelessWidget {
             ),
       body: stepperAvailable
           ? Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: body, // The different content for each page
             )
           : body,
