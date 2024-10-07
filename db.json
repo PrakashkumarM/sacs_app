@@ -1,4 +1,10 @@
 {
+  "product_details": {
+    "locations": [{"id":1, "value":"New York"}, {"id":2, "value":"Los Angeles"}, {"id":3, "value": "Houston"}, {"id":4, "value": "Phoenix"}, {"id":5, "value": "Los Angeles"} ],
+    "categories": [{"id":1, "value": "Electronics"}, {"id":2, "value": "Furniture"}, {"id":3, "value": "Clothing"}, {"id":4, "value": "Food"}, {"id":5, "value": "Books"}],
+    "brands": [{"id":1, "value": "Brand A"}, {"id":2, "value": "Brand B"}, {"id":3, "value": "Brand C"}, {"id":4, "value": "Brand D"}, {"id":5, "value": "Brand E"}],
+    "products": [{"id":1, "value": "Product A"}, {"id":2, "value":"Product B"}, {"id":3, "value": "Product C"}, {"id":4, "value": "Product D"}, {"id":5, "value": "Product E"}]
+  },
     "users": [
       {
         "id": 1,

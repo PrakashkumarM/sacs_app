@@ -14,20 +14,21 @@ import 'package:sacs_app/app/screens/make_sale/view.dart';
 import 'package:sacs_app/app/common/widgets/grouped_date_list.dart';
 
 class EnquiryScreen extends StatelessWidget {
-  final ScrollController _scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     final EnquiryController controller = Get.put(EnquiryController());
 
     return MainLayout(
-      title: 'Enquiry',
+      title: TextString.enquiry,
       showBackButton: false,
       isFilterAvailable: true,
       isSearchAvailable: true,
       showFloatingActionButton: true,
+      openBuilderCallBack: () {
+        return EnquiryForm();
+      },
       onFabTap: () {
-        NavigationHelper.navigateToScreen(EnquiryForm());
+        // NavigationHelper.navigateToScreen(EnquiryForm());
       },
       body: Obx(() {
         final groupedEnquiries = _groupEnquiriesByDate(controller.enquiries);

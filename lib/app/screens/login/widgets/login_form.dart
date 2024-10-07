@@ -19,7 +19,6 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -60,6 +59,7 @@ class LoginForm extends StatelessWidget {
               ),
               SizedBox(height: 8), // Space between label and input field
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: loginController
                     .emailController, // Bind controller to input field
                 decoration: InputDecoration(
@@ -84,6 +84,7 @@ class LoginForm extends StatelessWidget {
               SizedBox(height: 8), // Space between label and input field
               Obx(
                 () => TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: loginController
                       .passwordController, // Bind controller to input field
                   obscureText: loginController.obscureText.value,

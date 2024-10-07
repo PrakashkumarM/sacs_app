@@ -66,7 +66,14 @@ class CustomIcons {
       IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData refreshWait =
       IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-
+  static const IconData downArrow =
+      IconData(0xe827, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData invoice =
+      IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendarInput =
+      IconData(0xe828, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData rupee =
+      IconData(0xe829, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   // Icon mapping
   static const Map<String, IconData> _iconMap = {
     'home': home,
@@ -98,7 +105,11 @@ class CustomIcons {
     'call': call,
     'rightArrow': rightArrow,
     'truck': truck,
-    'refreshWait': refreshWait
+    'refreshWait': refreshWait,
+    'downArrow': downArrow,
+    'calendarInput': calendarInput,
+    'rupee': rupee,
+    'invoice': invoice
   };
 
   // Method to get IconData from icon name

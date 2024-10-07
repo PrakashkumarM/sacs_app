@@ -7,7 +7,6 @@ class DropdownSearchWidget<T> extends StatelessWidget {
   final T? selectedItem;
   final ValueChanged<T?> onChanged;
   final FormFieldValidator<T>? validator;
-  final bool showSearchBox;
 
   const DropdownSearchWidget({
     required this.labelText,
@@ -15,29 +14,45 @@ class DropdownSearchWidget<T> extends StatelessWidget {
     required this.onChanged,
     this.selectedItem,
     this.validator,
-    this.showSearchBox = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<T>(
-      popupProps: PopupProps.menu(
-        showSearchBox: showSearchBox,
-        showSelectedItems: true,
-        fit: FlexFit.loose, // Adjust the fit property
-        constraints: BoxConstraints(
-          maxHeight: 200, // Adjust this height to fit exactly 4 items
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DropdownSearch<T>(
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: InputDecoration(
+              border: OutlineInputBorder(),
+            ),
+          ),
+          items: items,
+          onChanged: onChanged,
+          selectedItem: selectedItem,
+          validator: validator,
+          dropdownBuilder: (context, selectedItem) {
+            return Text(
+              selectedItem?.toString() ?? 'Select $labelText', // Placeholder
+              style: const TextStyle(fontSize: 16),
+            );
+          },
+          dropdownButtonProps: DropdownButtonProps(
+            icon: const Icon(Icons.arrow_drop_down),
+          ),
+          popupProps: PopupProps.menu(
+            showSearchBox: true, // Enable search box
+            constraints: BoxConstraints(maxHeight: 200),
+            fit: FlexFit.loose,
+          ),
+          filterFn: (item, filter) {
+            // Filter function for items based on input text
+            return item.toString().toLowerCase().contains(filter.toLowerCase());
+          },
+          autoValidateMode:
+              AutovalidateMode.onUserInteraction, // Validate on interaction
         ),
-      ),
-      // dropdownDecoratorProps: DropDownDecoratorProps(
-      //   dropdownSearchDecoration: InputDecoration(
-      //     labelText: labelText,
-      //   ),
-      // ),
-      items: items,
-      onChanged: onChanged,
-      selectedItem: selectedItem,
-      validator: validator,
+      ],
     );
   }
 }

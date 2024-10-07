@@ -68,6 +68,7 @@ class StepperHeader extends StatelessWidget {
             bottom: 0.0,
             left: 0.0,
             child: EasyStepper(
+              disableScroll: true,
               titlesAreLargerThanSteps: true,
               stepRadius: 14,
               borderThickness: 2.5,

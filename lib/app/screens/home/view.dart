@@ -5,9 +5,15 @@ import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
 import 'package:sacs_app/app/common/widgets/rounded_image.dart';
 import 'package:sacs_app/app/common/widgets/text_button_with_icon.dart';
+import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
+import 'package:sacs_app/app/screens/customer_feedback/view.dart';
+import 'package:sacs_app/app/screens/followup/view.dart';
 import 'package:sacs_app/app/screens/home/contoller.dart';
+import 'package:sacs_app/app/screens/home/widgets/customer_feedback.dart';
+import 'package:sacs_app/app/screens/home/widgets/followup_card.dart';
+import 'package:sacs_app/app/screens/home/widgets/team_achivement.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -21,18 +27,181 @@ class HomeScreen extends StatelessWidget {
       isDashboard: true,
       body: Column(
         children: [
-          _buildGreetingSection(),
+          // Search bar (non-scrollable)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: TextString.enterPhoneNumber,
+                hintStyle: TextStyle(fontSize: 16, color: CustomColors.grey),
+                prefixIcon: Icon(
+                  CustomIcons.search,
+                  size: 16,
+                  color: CustomColors.darkGrey,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: CustomColors.borderGrey),
+                  borderRadius: BorderRadius.circular(30.0), // Rounded border
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: CustomColors.borderGrey),
+                  borderRadius: BorderRadius.circular(30.0), // Rounded border
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: CustomColors.borderGrey),
+                  borderRadius: BorderRadius.circular(30.0), // Rounded border
+                ),
+              ),
+            ),
+          ),
 
-          // Wrap the scrollable content in Expanded to avoid overflow
+          // Scrollable content
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  _buildGreetingSection(),
                   SizedBox(height: 24),
                   _buildStatisticsSection(context),
                   SizedBox(height: 24),
-                  _buildTopPerformersSection(), // Only this part is scrollable
+
+                  // Team Achievements section
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        TextString.teamAchivements,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.0,
+                            color: CustomColors.unSelectionColor),
+                      ),
+                      SizedBox(height: 4),
+                      SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: homeController.topPerformers.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 8.0),
+                              child: TeamAchievementCard(
+                                companyName: 'Samsung',
+                                logoUrl: 'https://picsum.photos/200',
+                                currentAchievement: 10,
+                                targetAchievement: 25,
+                                pendingTarget: 25,
+                                totalTarget: 50,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+
+                  // Followup Reminder section
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            TextString.followUpRem,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17.0,
+                                color: CustomColors.black),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              NavigationHelper.navigateToScreen(FollowUp());
+                            },
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 2.0),
+                              decoration: BoxDecoration(
+                                color: CustomColors.selectionColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    TextString.viewall,
+                                    style: TextStyle(color: CustomColors.white),
+                                  ),
+                                  SizedBox(width: 3.0),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: CustomColors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+                      FollowUpReminderList(),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+
+                  _buildTopPerformersSection(), // Scrollable part
+                  SizedBox(height: 24),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Waiting For Customer\n Feedback',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.0,
+                            color: CustomColors.black),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          NavigationHelper.navigateToScreen(CustomerFeedback());
+                        },
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.0, vertical: 2.0),
+                          decoration: BoxDecoration(
+                            color: CustomColors.selectionColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                TextString.viewall,
+                                style: TextStyle(color: CustomColors.white),
+                              ),
+                              SizedBox(width: 3.0),
+                              Icon(
+                                Icons.keyboard_arrow_right,
+                                color: CustomColors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 6),
+
+                  // Add a fixed height or use Flexible to prevent unbounded height issues
+                  CustomerFeedbackWidget(),
+                  SizedBox(height: 24),
                 ],
               ),
             ),
@@ -149,32 +318,30 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              title,
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16.0,
+                  color: textColor),
+            ),
+            Spacer(),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Text(
+                  value,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w600,
+                      color: textColor),
+                ),
                 Icon(
                   CustomIcons.getIconData(iconName),
                   color: textColor,
-                ),
-                SizedBox(
-                  width: 6,
-                ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.0,
-                  ),
+                  size: 30,
                 ),
               ],
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            Text(
-              value,
-              style: TextStyle(
-                  color: textColor, fontSize: 22, fontWeight: FontWeight.w600),
             ),
           ],
         ),

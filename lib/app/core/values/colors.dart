@@ -33,4 +33,10 @@ class CustomColors {
   static Color productBadgeColor = HexColor.fromHex('#007A93');
   static Color greenBadge = HexColor.fromHex('#E9FBF0');
   static Color redBadge = HexColor.fromHex('#FFF0F1');
+  static Color purpleColor = HexColor.fromHex('#381452');
+  static Color invoiceNoBlueColor = HexColor.fromHex('#0061C2');
+  static Color badgeBackgroundBlue = HexColor.fromHex('#99CCFF');
+  static Color refreshTealColor = HexColor.fromHex('#10BD9D');
+  static Color mildSkyblueBg = HexColor.fromHex('#EBF5FF');
+  static Color greyBgIcon = HexColor.fromHex('#F3F3F3');
 }

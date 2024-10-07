@@ -30,6 +30,7 @@ class GroupedDateList extends StatelessWidget {
     });
 
     return ListView.builder(
+      // shrinkWrap: true,
       controller: _scrollController,
       itemCount: itemCount + 1, // +1 for pagination loader
       itemBuilder: (context, index) {
