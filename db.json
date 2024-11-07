@@ -5,6 +5,166 @@
     "brands": [{"id":1, "value": "Brand A"}, {"id":2, "value": "Brand B"}, {"id":3, "value": "Brand C"}, {"id":4, "value": "Brand D"}, {"id":5, "value": "Brand E"}],
     "products": [{"id":1, "value": "Product A"}, {"id":2, "value":"Product B"}, {"id":3, "value": "Product C"}, {"id":4, "value": "Product D"}, {"id":5, "value": "Product E"}]
   },
+
+  "ready_for_delivery":[
+    {
+      "id": 1,
+      "invoice_no":"821g45514-1001",
+      "delivery_type": "warehouse/onshop",
+      "delivery_charge": 500,
+      "date": "28/2/2023",
+      "total_product": 24
+    },
+    {
+      "id": 2,
+      "invoice_no":"821g45514-1001",
+      "delivery_type": "warehouse/onshop",
+      "delivery_charge": 300,
+      "date": "28/4/2023",
+      "total_product": 14
+    },
+    {
+      "id": 3,
+      "invoice_no":"821g45514-1001",
+      "delivery_type": "warehouse/onshop",
+      "delivery_charge": 500,
+      "date": "28/4/2023",
+      "total_product": 80
+    }
+  ],
+
+    "dashboard": {
+        "widgets": {
+          "target": 100,
+          "achievement": 60,
+          "follow_up_reminder": 22,
+          "enquiries": 19,
+          "delivered":50,
+          "ready_for_delivery": 45
+        },
+        "team_achievements": [
+            {
+              "id": 1,
+              "product_name":"samsung",
+              "product_logo": "https://picsum.photos/200",
+              "total_target": 50,
+              "pending_target": 24,
+              "your_target":15,
+              "completed_target": 4
+            },
+            {
+              "id": 2,
+              "product_name":"TCL",
+              "product_logo": "https://picsum.photos/200",
+              "total_target": 30,
+              "pending_target": 24,
+              "your_target":5,
+              "completed_target": 4
+            },
+            {
+              "id": 3,
+              "product_name":"Sony",
+              "product_logo": "https://picsum.photos/200",
+              "total_target": 100,
+              "pending_target": 80,
+              "your_target":45,
+              "completed_target": 44
+            }
+        ],
+        "follow_up_reminder": [
+            {
+              "id": 1,
+              "customer_name": "Abdul",
+              "next_visit_date": "10-09-2024",
+              "mobile": 988545454
+            },
+            {
+              "id": 2,
+              "customer_name":"Daven",
+              "next_visit_date": "8-12-2024",
+              "mobile": 988455454
+            },
+            {
+              "id": 3,
+              "customer_name":"Jack",
+              "next_visit_date": "18-09-2024",
+              "mobile": 998545454
+            }
+        ],
+        "top_performers": [
+            {
+              "id": 1,
+              "employee_name": "Steve",
+              "role": "sales",
+              "enquiries": 125,
+              "sales":99,
+              "payments": 5300
+            },
+            {
+              "id": 2,
+              "employee_name": "Mathew",
+              "role": "warehouse",
+              "enquiries": 50,
+              "sales":50,
+              "payments": 900
+            },
+            {
+              "id": 3,
+              "employee_name": "Garry",
+              "role": "sales",
+              "enquiries": 100,
+              "sales":99,
+              "payments": 4000
+            }
+        ],
+        "customer_feedback": [
+          {
+            "id": 1,
+            "customer_name": "tamil",
+            "mobile": "7848748714",
+            "invoice_no": "821g45514-1001"
+          },
+          {
+            "id": 2,
+            "customer_name": "Akil",
+            "mobile": "7848748714",
+            "invoice_no": "821g45514-1001"
+          },{
+            "id": 3,
+            "customer_name": "Ram",
+            "mobile": "7848748714",
+            "invoice_no": "821g45514-1001"
+          }
+        ],
+        "ready_for_delivery": [
+          {
+            "id": 1,
+            "invoice_no":"821g45514-1001",
+            "delivery_type": "warehouse/onshop",
+            "delivery_charge": 500,
+            "date": "28/2/2023",
+            "total_product": 24
+          },
+          {
+            "id": 2,
+            "invoice_no":"821g45514-1001",
+            "delivery_type": "warehouse/onshop",
+            "delivery_charge": 300,
+            "date": "28/4/2023",
+            "total_product": 14
+          },
+          {
+            "id": 3,
+            "invoice_no":"821g45514-1001",
+            "delivery_type": "warehouse/onshop",
+            "delivery_charge": 500,
+            "date": "28/4/2023",
+            "total_product": 80
+          }
+        ]
+    },
+
+    
     "users": [
       {
         "id": 1,

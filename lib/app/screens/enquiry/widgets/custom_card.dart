@@ -62,7 +62,7 @@ class CustomCard extends StatelessWidget {
                   style: TextStyle(
                     color: enquiryStatus == 'Enquired'
                         ? CustomColors.successDarktext
-                        : CustomColors.dangerDarktext,
+                        : CustomColors.darkRedText,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

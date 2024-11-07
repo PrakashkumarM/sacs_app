@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
+import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/data/controllers/filter_controller.dart';
+import 'package:sacs_app/app/data/controllers/search_controller.dart';
+import 'package:sacs_app/app/screens/dashboard/controller.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final SearchTextController controller = SearchTextController();
+  final FilterController filterController = FilterController();
+  final DashboardController dashboardController =
+      Get.find<DashboardController>();
+
   final String title;
   final bool showBackButton;
+  final String showBackButtonStr;
   final Widget? actionButton;
   final bool isSearchAvailable;
   final bool isFilterAvailable;
 
-  CustomAppBar({
-    required this.title,
-    this.showBackButton = true,
-    this.actionButton,
-    this.isSearchAvailable = false,
-    this.isFilterAvailable = false,
-  });
+  CustomAppBar(
+      {required this.title,
+      this.showBackButton = true,
+      this.actionButton,
+      this.isSearchAvailable = false,
+      this.isFilterAvailable = false,
+      this.showBackButtonStr = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               icon: Icon(Icons.arrow_back, color: CustomColors.black),
               onPressed: () {
-                Navigator.of(context).pop();
+                showBackButtonStr == ''
+                    ? Navigator.of(context).pop()
+                    : showBackButtonStr == 'dashboard'
+                        ? dashboardController.changeTabIndex(0)
+                        : NavigationHelper.navigateAndClearStack(
+                            showBackButtonStr);
               },
             )
           : null,
@@ -52,6 +68,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Icon(Icons.search, color: CustomColors.unSelectionColor),
                   onPressed: () {
                     print('Search tapped');
+                    controller.showSearchBar();
                   },
                 ),
               if (isFilterAvailable)
@@ -63,6 +80,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   onPressed: () {
                     print('Filter tapped');
+                    filterController.showAdvancedSearchBottomSheet();
                   },
                 ),
             ],

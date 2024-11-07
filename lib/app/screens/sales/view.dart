@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sacs_app/app/common/widgets/main_layout.dart';
+import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
 import 'package:sacs_app/app/data/models/enquiry_model.dart';
 import 'package:sacs_app/app/common/widgets/grouped_date_list.dart';
@@ -73,11 +74,12 @@ class SalesScreen extends StatelessWidget {
           invoiceNumber:
               '#45454455-sasa-4455', // Replace this with actual property
           deliveryType: "Warehouse / On Shop", // Replace with actual property
-          deliveryCharge: "0", // Replace with actual property
+          deliveryCharge: "₹ 0", // Replace with actual property
           totalProducts:
               "${54 ?? 'Unknown'} No's", // Replace with actual property
           onEdit: () {
             // Handle edit action
+            NavigationHelper.navigateToScreen(CreateSales());
           },
           onDelete: () {
             // Handle delete action

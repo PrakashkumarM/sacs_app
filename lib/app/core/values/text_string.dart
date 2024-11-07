@@ -33,6 +33,7 @@ class TextString {
   // App Bar titles
   static const String makeSales = "Make ${salesIconText}";
   static const String createEnquiry = "Create Enquiry";
+  static const String customerEnquiries = "Customer Enquiries";
   static const String editProfile = "Edit Profile";
   static const String createNewSales = "Create New Sales";
 
@@ -52,11 +53,13 @@ class TextString {
   static const String selectBrand = "Select Brand";
   static const String selectProduct = "Select Product";
   static const String selectModal = "Select Modal";
+  static const String showDetails = "Show Details";
 
   static const String addProduct = "Add Product";
   static const String back = "Back";
   static const String next = "Next";
   static const String remove = "remove";
+  static const String notification = "notification";
 
   // Home Screen
   static const String enquiries = "Enquiries";
@@ -78,7 +81,18 @@ class TextString {
   static const String enterPhoneNumber = "Enter Phone Number";
   static const String teamAchivements = "Team Achievements";
   static const String followUpRem = "Follow Up Reminder";
+  static const String rfdList = "Ready for Delivery List";
+
+  static const String followUpReminder = "Follow Up";
+  static const String cutomerFeedbackAlertContent =
+      "Please get the feedback from customer and update in the below field";
+  static const String readyForDelivery = "Ready For Delivery";
+  static const String delivered = "Delivered";
+  static const String truckDelivery = "truck";
+
   static const String viewall = "View All";
+  static const String achievement = "Achievement";
+  static const String medal = "medal";
 
   // Profile Screen
   static const String fullName = "Full Name";
@@ -133,7 +147,7 @@ class TextString {
 
   static const String customerFeedback = "Customer Feedback";
   static const String noItemsFound = "No Items Found!";
-  static const String plsSelectProduct = "Please select product";
+  static const String plsSelect = "Please select";
 
   // Customer Details form
   static const String mobileNo = "Mobile Number";
@@ -154,4 +168,10 @@ class TextString {
   static const String gallery = "Gallery";
   static const String camera = "Camera";
   static const String serialNoEdit = "Serial Number Edit";
+
+  // Customer Products
+  static const String deliveryApproval = "Delivery Approval";
+  static const String productDelivered =
+      "Are you sure the product is delivered?";
+  static const String yes = "Yes";
 }

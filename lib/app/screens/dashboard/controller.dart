@@ -9,13 +9,16 @@ class DashboardController extends GetxController {
   final tabIndex = 0.obs;
   final AuthSessionService _authSessionService = AuthSessionService();
 
+  @override
   void onInit() {
     super.onInit();
 
     // Check if tabIndex is passed via route arguments
+    print('ARGS: ${Get.arguments}');
     if (Get.arguments != null && Get.arguments['tabIndex'] != null) {
       int passedTabIndex = Get.arguments['tabIndex'];
-      changeTabIndex(passedTabIndex);
+      changeTabIndex(
+          passedTabIndex); // Change the tab index based on passed argument
     }
   }
 
@@ -25,6 +28,7 @@ class DashboardController extends GetxController {
   }
 
   void changeTabIndex(int value) {
+    print('$value:value');
     // Close keyboard
     FocusManager.instance.primaryFocus?.unfocus();
     // Change tab

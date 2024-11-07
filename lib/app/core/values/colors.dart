@@ -3,6 +3,7 @@ import 'package:sacs_app/app/core/utils/extensions.dart';
 
 class CustomColors {
   // Onboarding images
+  static Color bgColor = HexColor.fromHex('#f7f7f7');
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;
@@ -26,7 +27,6 @@ class CustomColors {
   static Color placeholderGrey = HexColor.fromHex('#B1B1B1');
   static Color borderGrey = HexColor.fromHex('#DFE5EF');
   static Color successDarktext = HexColor.fromHex('#0F5C2E');
-  static Color dangerDarktext = HexColor.fromHex('#92010E');
   static Color successLightBackground = HexColor.fromHex('#9AEFBC');
   static Color dangerLightBackground = HexColor.fromHex('#FEBDC3');
   static Color productBadgeBackgroundColor = HexColor.fromHex('#B6F3FF');
@@ -39,4 +39,7 @@ class CustomColors {
   static Color refreshTealColor = HexColor.fromHex('#10BD9D');
   static Color mildSkyblueBg = HexColor.fromHex('#EBF5FF');
   static Color greyBgIcon = HexColor.fromHex('#F3F3F3');
+  static Color bgGreenButton = HexColor.fromHex('#54be9e');
+  static Color dividerLightBlue = HexColor.fromHex('#BDDEFF');
+
 }

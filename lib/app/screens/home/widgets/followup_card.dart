@@ -1,113 +1,175 @@
 import 'package:flutter/material.dart';
+
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
+import 'package:sacs_app/app/core/utils/global_helper.dart';
+import 'package:sacs_app/app/core/utils/navigation_helper.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
+import 'package:sacs_app/app/screens/customer_enquiries/view.dart';
 
 class FollowUpCard extends StatelessWidget {
   final String name;
   final String date;
-  final Color avatarColor;
-  final IconData callIcon;
-  final IconData viewIcon;
+  final String mobile;
+  final int index;
+  final dynamic controller;
+  final openProductDetails;
+  final bool isLastIndex;
 
-  const FollowUpCard({
+  final colorList = [
+    {
+      'lightColor': CustomColors.lightRed,
+      'darkColor': CustomColors.darkRedText,
+    },
+    {
+      'lightColor': CustomColors.sandalColor,
+      'darkColor': CustomColors.darkSandalColor,
+    },
+    {
+      'lightColor': CustomColors.invoiceNoBlueColor,
+      'darkColor': CustomColors.badgeBackgroundBlue,
+    },
+  ];
+  // Method to get color based on parent index
+  Map<String, Color> getColorByIndex(int parentIndex) {
+    final int index = parentIndex % colorList.length;
+    return colorList[index];
+  }
+
+  FollowUpCard({
     required this.name,
     required this.date,
-    required this.avatarColor,
-    required this.callIcon,
-    required this.viewIcon,
+    required this.mobile,
+    required this.index,
+    required this.controller,
+    this.openProductDetails,
+    this.isLastIndex = false,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('isLastIndex:$isLastIndex');
+    final currentColor =
+        (index > 2 ? getColorByIndex(index) : colorList[index]);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: avatarColor,
-          child: const Icon(CustomIcons.user, color: Colors.white),
-        ),
-        title: Text(
-          name,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 15,
+      child: GestureDetector(
+        onTap: () {
+          controller.showBottomSheet(
+            context,
+            'Product Details',
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height *
+                          0.4, // Max height of 50% of screen
+                    ),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                      title: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // Align items at the start
+                        children: [
+                          Text(
+                            "Product Name",
+                            style: TextStyle(
+                                color: CustomColors.grey, fontSize: 13),
+                          ),
+                          SizedBox(width: 20),
+                          Flexible(
+                            child: Text(
+                              "Home Theater/Soundbar voltas 1.5 ton",
+                              style: TextStyle(
+                                  color: CustomColors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13),
+                              maxLines:
+                                  2, // Allows text to break into two lines
+                              overflow: TextOverflow
+                                  .ellipsis, // Adds ellipsis if it overflows
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              border: isLastIndex
+                  ? null
+                  : Border(
+                      bottom: BorderSide(
+                          width: 1,
+                          color: CustomColors.borderGrey.withOpacity(0.5)))),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: currentColor['lightColor'],
+              child: Icon(CustomIcons.user, color: currentColor['darkColor']),
+            ),
+            title: Text(
+              name,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+              ),
+            ),
+            subtitle: Text(
+              date,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: CustomColors.grey,
+              ),
+            ),
+            trailing: _buildTrailingIcons(controller),
           ),
         ),
-        subtitle: Text(
-          date,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-            color: CustomColors.grey,
-          ),
-        ),
-        trailing: _buildTrailingIcons(),
       ),
     );
   }
 
-  Widget _buildTrailingIcons() {
+  Widget _buildTrailingIcons(controller) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildCircularIcon(
-            CustomColors.greenBadge, callIcon, CustomColors.successDarktext),
+        _buildCircularIcon(CustomColors.greenBadge, CustomIcons.call,
+            CustomColors.successDarktext, () {
+          GlobalHelper.makePhoneCall(Uri(scheme: 'tel', path: '9876543210'));
+        }),
         SizedBox(width: 4),
-        _buildCircularIcon(CustomColors.mildSkyblueBg, viewIcon,
-            CustomColors.invoiceNoBlueColor),
+        _buildCircularIcon(CustomColors.mildSkyblueBg, Icons.visibility,
+            CustomColors.invoiceNoBlueColor, () {
+          NavigationHelper.navigateToScreen(CustomerEnquiries());
+        }),
       ],
     );
   }
 
-  Widget _buildCircularIcon(Color bgColor, IconData icon, Color iconColor) {
-    return Container(
-      width: 36,
-      height: 36,
-      decoration: BoxDecoration(
-        color: bgColor,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        icon,
-        size: 20,
-        color: iconColor,
-      ),
-    );
-  }
-}
-
-class FollowUpReminderList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: CustomColors.white,
-      elevation: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildFollowUpCard("John Mathew", "10-09-2024", Colors.blue),
-          _buildFollowUpCard("John", "09-09-2024", Colors.amber),
-          _buildFollowUpCard("John Richard", "08-09-2024", Colors.red),
-          _buildFollowUpCard(
-              "John Mathew Richard", "07-09-2024", Colors.lightBlue),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFollowUpCard(String name, String date, Color avatarColor) {
-    return Column(
-      children: [
-        FollowUpCard(
-          name: name,
-          date: date,
-          avatarColor: avatarColor,
-          callIcon: CustomIcons.call,
-          viewIcon: Icons.visibility,
+  Widget _buildCircularIcon(
+      Color bgColor, IconData icon, Color iconColor, onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: bgColor,
+          shape: BoxShape.circle,
         ),
-        Divider(color: CustomColors.borderGrey),
-      ],
+        child: Icon(
+          icon,
+          size: 20,
+          color: iconColor,
+        ),
+      ),
     );
   }
 }

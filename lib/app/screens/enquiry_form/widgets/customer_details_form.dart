@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:sacs_app/app/common/styles/common_styles.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
 import 'package:sacs_app/app/core/values/text_string.dart';
 import 'package:sacs_app/app/screens/enquiry_form/customer_details_form_controller.dart';
@@ -26,7 +26,9 @@ class CustomerDetailsForm extends StatelessWidget {
             children: [
               _buildTextField(
                   TextString.mobileNo, controller.mobileNumberController,
-                  isRequired: true),
+                  isRequired: true,
+                  keyboardType: TextInputType.phone,
+                  validationMethod: controller.validateMobileNumber),
               _buildUseCustomerPhoneCheckbox(),
               _buildTextField(TextString.name, controller.nameController,
                   isRequired: true),
@@ -39,9 +41,10 @@ class CustomerDetailsForm extends StatelessWidget {
               _buildTextField(TextString.city, controller.cityController),
               _buildTextField(TextString.state, controller.stateController),
               _buildTextField(TextString.pincode, controller.pinCodeController,
-                  isRequired: true),
+                  isRequired: true, keyboardType: TextInputType.number),
               _buildReferenceDetails(),
               _buildTextField(TextString.remarks, controller.remarksController),
+              SizedBox(height: 20), // Add space before the button
             ],
           ),
         ),
@@ -50,7 +53,10 @@ class CustomerDetailsForm extends StatelessWidget {
   }
 
   Widget _buildTextField(String label, TextEditingController controller,
-      {bool isMultiline = false, bool isRequired = false}) {
+      {bool isMultiline = false,
+      bool isRequired = false,
+      keyboardType = TextInputType.text,
+      String? Function(String?)? validationMethod}) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: fieldPaddingVertical),
       child: Column(
@@ -59,16 +65,22 @@ class CustomerDetailsForm extends StatelessWidget {
           _buildLabel(label, isRequired),
           SizedBox(height: 4),
           TextFormField(
+            maxLength:
+                (label == TextString.mobileNo || label == TextString.refMobile)
+                    ? 10
+                    : null,
+            keyboardType: keyboardType,
             controller: controller,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             maxLines: isMultiline ? 3 : 1,
             decoration: _buildInputDecoration(label),
-            validator: (value) {
-              if (isRequired && (value == null || value.isEmpty)) {
-                return 'Please enter $label';
-              }
-              return null;
-            },
+            validator: validationMethod ??
+                (value) {
+                  if (isRequired && (value == null || value.isEmpty)) {
+                    return 'Please enter $label';
+                  }
+                  return null;
+                },
           ),
         ],
       ),
@@ -96,24 +108,17 @@ class CustomerDetailsForm extends StatelessWidget {
 
   InputDecoration _buildInputDecoration(String label) {
     return InputDecoration(
+      counterText: "",
       hintText: 'Enter $label',
       hintStyle: TextStyle(
         color: CustomColors.grey,
         fontWeight: FontWeight.w400,
-        fontSize: 16,
+        fontSize: 14,
       ),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey),
-      ),
+      contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+      border: CommonStyles.outlineInputBorder(),
+      focusedBorder: CommonStyles.outlineInputBorder(),
+      enabledBorder: CommonStyles.outlineInputBorder(),
     );
   }
 
@@ -142,6 +147,7 @@ class CustomerDetailsForm extends StatelessWidget {
 
   Widget _buildReferenceDetails() {
     return Card(
+      margin: EdgeInsets.zero,
       color: CustomColors.lightBlueBackground,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -157,7 +163,8 @@ class CustomerDetailsForm extends StatelessWidget {
             ),
             SizedBox(height: 2),
             _buildTextField(
-                TextString.refMobile, controller.referenceMobileController),
+                TextString.refMobile, controller.referenceMobileController,
+                keyboardType: TextInputType.numberWithOptions()),
             _buildTextField(
                 TextString.refName, controller.referenceNameController),
           ],

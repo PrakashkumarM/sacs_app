@@ -34,7 +34,7 @@ class CustomIcons {
       IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData medal =
       IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData notifcation =
+  static const IconData notification =
       IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData salesmanEnquiry =
       IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -90,7 +90,7 @@ class CustomIcons {
     'backArrow': backArrow,
     'target': target,
     'medal': medal,
-    'notifcation': notifcation,
+    'notification': notification,
     'salesmanEnquiry': salesmanEnquiry,
     'tablerMessage': tablerMessage,
     'user': user,

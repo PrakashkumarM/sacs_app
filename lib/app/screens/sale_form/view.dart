@@ -68,11 +68,28 @@ class CreateSales extends StatelessWidget {
         child: Row(
           children: [
             Obx(() => _controller.currentStep.value > 0
-                ? _buildStepButton(
-                    label: TextString.back,
-                    icon: CustomIcons.backArrow,
-                    color: CustomColors.purpleColor,
-                    onPressed: () => _controller.goBackOrNext(true),
+                ? Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _controller.goBackOrNext(true);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.lightGrey,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(CustomIcons.backArrow,
+                              color: CustomColors.purpleColor),
+                          const SizedBox(width: 8),
+                          Text(TextString.back,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: CustomColors.purpleColor)),
+                        ],
+                      ),
+                    ),
                   )
                 : SizedBox.shrink()),
             const SizedBox(width: 10),

@@ -53,14 +53,6 @@ class SalesScreenController extends GetxController
 
   void showFab() => fabVisible.value = true;
 
-  Future<void> makePhoneCall(Uri url) async {
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw '${TextString.cldNotLaunch} $url';
-    }
-  }
-
   void hideFab() => fabVisible.value = false;
 
   Future<void> fetchEnquiries() async {
@@ -90,7 +82,7 @@ class SalesScreenController extends GetxController
           message: message,
           confirmText: confirmText,
           cancelText: cancelText,
-          onConfirm: () {
+          onConfirm: (feedback) {
             onConfirm();
             Navigator.of(context).pop();
           },

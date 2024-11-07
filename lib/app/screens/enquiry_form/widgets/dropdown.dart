@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sacs_app/app/common/styles/common_styles.dart';
 
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/common/widgets/dropdown_clone/drop_down_search_field.dart';
@@ -13,16 +14,18 @@ class CommonDropdownMenu extends StatelessWidget {
   final double width;
   final Function scrollTop;
   final RxString selectedValue;
+  final String validationLabel;
 
-  const CommonDropdownMenu({
-    Key? key,
-    required this.label,
-    required this.items,
-    required this.onSelected,
-    required this.scrollTop,
-    this.width = double.infinity,
-    required this.selectedValue,
-  }) : super(key: key);
+  const CommonDropdownMenu(
+      {Key? key,
+      required this.label,
+      required this.items,
+      required this.onSelected,
+      required this.scrollTop,
+      this.width = double.infinity,
+      required this.selectedValue,
+      this.validationLabel = ''})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,8 @@ class CommonDropdownMenu extends StatelessWidget {
         onSelected(suggestion);
         scrollTop();
       },
-      validator: (value) => value!.isEmpty ? TextString.plsSelectProduct : null,
+      validator: (value) =>
+          value!.isEmpty ? '${TextString.plsSelect} $validationLabel' : null,
       onSaved: (value) {},
       displayAllSuggestionWhenTap: true,
     );
@@ -72,11 +76,12 @@ class CommonDropdownMenu extends StatelessWidget {
 
   InputDecoration _inputDecoration() {
     return InputDecoration(
+      contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       hintText: label,
-      hintStyle: TextStyle(fontSize: 16, color: CustomColors.placeholderGrey),
-      border: _outlineInputBorder(),
-      focusedBorder: _outlineInputBorder(),
-      enabledBorder: _outlineInputBorder(),
+      hintStyle: TextStyle(fontSize: 14, color: CustomColors.placeholderGrey),
+      border: CommonStyles.outlineInputBorder(),
+      focusedBorder: CommonStyles.outlineInputBorder(),
+      enabledBorder: CommonStyles.outlineInputBorder(),
       suffixIcon:
           Icon(CustomIcons.downArrow, color: CustomColors.placeholderGrey),
     );
@@ -85,7 +90,7 @@ class CommonDropdownMenu extends StatelessWidget {
   OutlineInputBorder _outlineInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
-      borderSide: BorderSide(color: CustomColors.grey),
+      borderSide: BorderSide(color: CustomColors.borderGrey),
     );
   }
 

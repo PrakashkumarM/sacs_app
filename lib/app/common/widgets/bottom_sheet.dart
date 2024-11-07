@@ -9,7 +9,7 @@ class CustomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(12.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -34,7 +34,7 @@ class CustomBottomSheet extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          SizedBox(height: 12.0),
           content,
         ],
       ),

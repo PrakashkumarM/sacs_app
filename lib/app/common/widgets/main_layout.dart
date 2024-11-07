@@ -20,6 +20,7 @@ class MainLayout extends StatelessWidget {
   final Function()? onFabTap;
   final Function()? openBuilderCallBack;
   final bool resizeToAvoidBottomInset;
+  final String showBackButtonStr;
 
   const MainLayout(
       {Key? key,
@@ -35,7 +36,8 @@ class MainLayout extends StatelessWidget {
       this.onFabTap,
       this.stepperAvailable = true,
       this.openBuilderCallBack,
-      this.resizeToAvoidBottomInset = true})
+      this.resizeToAvoidBottomInset = true,
+      this.showBackButtonStr = ''})
       : super(key: key);
 
   @override
@@ -53,6 +55,7 @@ class MainLayout extends StatelessWidget {
               showBackButton: showBackButton,
               isSearchAvailable: isSearchAvailable,
               isFilterAvailable: isFilterAvailable,
+              showBackButtonStr: showBackButtonStr,
             ),
       body: stepperAvailable
           ? Container(

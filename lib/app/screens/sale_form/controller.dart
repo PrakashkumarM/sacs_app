@@ -127,7 +127,7 @@ class CreateSalesFormController extends GetxController
         ],
         confirmText: TextString.yesDelIt,
         cancelText: TextString.cancel,
-        onConfirm: () => Navigator.of(context).pop(),
+        onConfirm: (feedback) => Navigator.of(context).pop(),
         onCancel: () => Navigator.of(context).pop(),
       ),
     );

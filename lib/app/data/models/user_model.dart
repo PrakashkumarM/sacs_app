@@ -14,10 +14,11 @@ class UserModel {
   // Create a UserModel instance from a map
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
-      username: json['username'],
-      password: json['password'],
-      role: json['role'],
+      // Handle int to String conversion for the 'id' field
+      id: json['id'].toString(),
+      username: json['username'] ?? '',
+      password: json['password'] ?? '',
+      role: json['role'] ?? '',
     );
   }
 

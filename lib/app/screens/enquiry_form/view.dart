@@ -61,57 +61,57 @@ class EnquiryForm extends StatelessWidget {
     return Expanded(
       child: SingleChildScrollView(
         controller: _scrollController,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildDropdownField(
-                index: 1,
-                label: TextString.selectCategory,
-                items: _controller.categories,
-                onSuggestionSelected: (category) {
-                  _controller.selectedCategory.value = category;
-                },
-                scrollTop: () {},
-              ),
+                  index: 1,
+                  label: TextString.selectCategory,
+                  items: _controller.categories,
+                  onSuggestionSelected: (category) {
+                    _controller.selectedCategory.value = category;
+                  },
+                  scrollTop: () {},
+                  validationLabel: 'category'),
               const SizedBox(height: 16),
               _buildDropdownField(
-                index: 2,
-                label: TextString.selectBrand,
-                items: _controller.brands,
-                onSuggestionSelected: (brand) {
-                  _controller.selectedBrand.value = brand;
-                },
-                scrollTop: () {
-                  _scrollToDropdownField(1);
-                },
-              ),
+                  index: 2,
+                  label: TextString.selectBrand,
+                  items: _controller.brands,
+                  onSuggestionSelected: (brand) {
+                    _controller.selectedBrand.value = brand;
+                  },
+                  scrollTop: () {
+                    _scrollToDropdownField(1);
+                  },
+                  validationLabel: 'brand'),
               const SizedBox(height: 16),
               _buildDropdownField(
-                index: 3,
-                label: TextString.selectProduct,
-                items: _controller.products,
-                onSuggestionSelected: (product) {
-                  _controller.selectedProduct.value = product;
-                },
-                scrollTop: () {
-                  _scrollToDropdownField(2);
-                },
-              ),
+                  index: 3,
+                  label: TextString.selectProduct,
+                  items: _controller.products,
+                  onSuggestionSelected: (product) {
+                    _controller.selectedProduct.value = product;
+                  },
+                  scrollTop: () {
+                    _scrollToDropdownField(2);
+                  },
+                  validationLabel: 'product'),
               const SizedBox(height: 16),
               _buildDropdownField(
-                index: 4,
-                label: TextString.selectModal,
-                items: _controller.locations,
-                onSuggestionSelected: (location) {
-                  _controller.selectedLocation.value = location;
-                },
-                scrollTop: () {
-                  _scrollToDropdownField(3);
-                },
-              ),
+                  index: 4,
+                  label: TextString.selectModal,
+                  items: _controller.locations,
+                  onSuggestionSelected: (location) {
+                    _controller.selectedLocation.value = location;
+                  },
+                  scrollTop: () {
+                    _scrollToDropdownField(3);
+                  },
+                  validationLabel: 'modal'),
               const SizedBox(height: 16),
               _buildAddProductButton(),
               const SizedBox(height: 16),
@@ -132,8 +132,19 @@ class EnquiryForm extends StatelessWidget {
   }
 
   Widget _buildNavigationButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white, // Background color of the container
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1), // Shadow color
+            offset: Offset(0, -3), // Shift shadow upwards
+            blurRadius: 6, // Shadow blur radius
+            spreadRadius: 0, // How much the shadow should spread
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         children: [
           _buildBackButton(),
@@ -217,7 +228,8 @@ class EnquiryForm extends StatelessWidget {
       required String label,
       required RxList<String> items,
       required onSuggestionSelected,
-      required scrollTop}) {
+      required scrollTop,
+      required validationLabel}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -227,7 +239,7 @@ class EnquiryForm extends StatelessWidget {
             style: TextStyle(
                 color: CustomColors.unSelectionColor,
                 fontSize: 16,
-                fontWeight: FontWeight.w500),
+                fontWeight: FontWeight.w400),
             children: [
               TextSpan(
                 text: ' *',
@@ -238,12 +250,13 @@ class EnquiryForm extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CommonDropdownMenu(
-          label: label,
-          items: items,
-          onSelected: onSuggestionSelected,
-          selectedValue: RxString(''),
-          scrollTop: scrollTop, // Make sure to set a default value
-        ),
+            label: label,
+            items: items,
+            onSelected: onSuggestionSelected,
+            selectedValue: RxString(''),
+            scrollTop: scrollTop,
+            validationLabel: validationLabel // Make sure to set a default value
+            ),
       ],
     );
   }
@@ -284,36 +297,83 @@ class EnquiryForm extends StatelessWidget {
       ),
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildInfoRow("${TextString.category}:", "Mobiles"),
-            _buildInfoRow("${TextString.brand}:", "Samsung"),
-            _buildInfoRow("${TextString.product}:", "Samsung Galaxy S23 Ultra"),
-            _buildInfoRow("${TextString.model}:", "Samsung S Ultra"),
-            SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  // Add your onPressed functionality here
-                },
-                child: Text(
-                  TextString.remove,
-                  style: TextStyle(
-                    color: CustomColors.selectionColor,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                    "Category",
+                    style: TextStyle(
+                      color: CustomColors.grey,
+                    ),
                   ),
                 ),
-              ),
+                Text(
+                  "Mobiles",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                    "Brand",
+                    style: TextStyle(
+                      color: CustomColors.grey,
+                    ),
+                  ),
+                ),
+                Text(
+                  "Mobiles",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                    "Product",
+                    style: TextStyle(
+                      color: CustomColors.grey,
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    "Mobiles ",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                    "Model",
+                    style: TextStyle(
+                      color: CustomColors.grey,
+                    ),
+                  ),
+                ),
+                Text(
+                  "Mobiles",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ],
+            )
+          ])),
     );
   }
 
-  Widget _buildInfoRow(String title, String value) {
+  Widget _buildGridItem(String title, String value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Row(
@@ -329,7 +389,6 @@ class EnquiryForm extends StatelessWidget {
           Expanded(
             child: Text(
               value,
-              textAlign: TextAlign.end,
               style: TextStyle(color: CustomColors.grey),
             ),
           ),

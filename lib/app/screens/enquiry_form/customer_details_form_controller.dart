@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 class CustomerDetailsFormController extends GetxController {
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController primaryAddressController = TextEditingController();
+  final TextEditingController primaryAddressController =
+      TextEditingController();
   final TextEditingController secondaryAddressController =
       TextEditingController();
   final TextEditingController cityController = TextEditingController();
@@ -36,6 +37,17 @@ class CustomerDetailsFormController extends GetxController {
         cityController.text.isNotEmpty &&
         stateController.text.isNotEmpty &&
         pinCodeController.text.isNotEmpty;
+  }
+
+  String? validateMobileNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a mobile number';
+    } else if (value.length != 10) {
+      return 'Mobile number must be 10 digits long';
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return 'Please enter a valid mobile number';
+    }
+    return null;
   }
 
   @override

@@ -22,7 +22,7 @@ class TeamAchievementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double progress = currentAchievement / targetAchievement;
+    double progress = pendingTarget / totalTarget;
 
     return Card(
       color: CustomColors.greenBadge,

@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,9 +23,10 @@ class Dashboard extends StatelessWidget {
       color: CustomColors.transparent,
       iconBrightness: Brightness.dark,
     );
-
     final DashboardController controller = Get.find<DashboardController>();
     final UserController userController = Get.find<UserController>();
+
+    print('TABINDEX:${controller.tabIndex.value}');
 
     final List<Widget> tabWidgets = userController.isSalesRole.value
         ? [HomeScreen(), EnquiryScreen(), SalesScreen()]

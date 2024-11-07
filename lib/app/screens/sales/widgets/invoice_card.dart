@@ -133,7 +133,7 @@ class InvoiceCard extends StatelessWidget {
                       TextString.invoice,
                       () =>
                           NavigationHelper.navigateToScreen(CustomerProducts()),
-                      CustomIcons.invoice,
+                      Icons.article,
                       CustomColors.selectionColor),
                   _buildActionButton(TextString.edit, onEdit,
                       CustomIcons.editPencil, CustomColors.grey),

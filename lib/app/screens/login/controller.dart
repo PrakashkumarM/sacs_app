@@ -51,10 +51,16 @@ class LoginController extends GetxController {
         print('User logged in: $user');
         // Store user details in sesison
         _authSessionService.saveLoginSession(user);
+
+        print('_authSessionService: $user');
+
         // Store user details in the UserController
         userController.saveUserDetails(user);
         // Navigate to dashboars
+        print('Navigate: $user');
+
         NavigationHelper.navigateAndClearStack('/dashboard');
+        print('Navigate after: $user');
       } else {
         // Handle login failure
         print('Login failed');
