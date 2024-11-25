@@ -59,7 +59,11 @@ class ConfirmationDialog extends StatelessWidget {
                           fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.close),
+                      icon: Icon(
+                        Icons.close,
+                        size: 30,
+                        color: CustomColors.darkGrey,
+                      ),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ],
@@ -105,9 +109,23 @@ class ConfirmationDialog extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: feedbackController,
                       decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: hintText,
-                      ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: CustomColors.borderGrey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: CustomColors.borderGrey),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: CustomColors.borderGrey),
+                          ),
+                          hintText: hintText,
+                          hintStyle: TextStyle(color: CustomColors.grey)),
                       maxLines: 2,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

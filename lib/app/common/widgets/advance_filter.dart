@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sacs_app/app/common/widgets/custom_icons.dart';
 import 'package:sacs_app/app/core/values/colors.dart';
-import 'package:sacs_app/app/data/controllers/filter_controller.dart';
 
 class AdvancedSearchBottomSheet extends StatelessWidget {
-  final FilterController controller = Get.put(FilterController());
+  final String title;
+  final dynamic mainFiltercontroller; // Accept any controller type
 
-  AdvancedSearchBottomSheet({super.key});
+  AdvancedSearchBottomSheet(
+      {Key? key, required this.title, required this.mainFiltercontroller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('mainFiltercontroller:$mainFiltercontroller');
+    final filters = _getFiltersForTitle(title);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Container(
@@ -25,16 +29,7 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildHeader(context),
-            SizedBox(height: 16.0),
-            _buildDateField('Start Date', controller.startDate),
-            SizedBox(height: 16.0),
-            _buildDateField('End Date', controller.endDate),
-            SizedBox(height: 16.0),
-            _buildDropdownField('Delivery Status', controller.deliveryStatus,
-                ['Pending', 'Delivered']),
-            SizedBox(height: 16.0),
-            _buildDropdownField('Delivery Payment', controller.deliveryPayment,
-                ['Paid', 'Unpaid']),
+            ...filters,
             SizedBox(height: 16.0),
             _buildActions(context),
           ],
@@ -48,7 +43,7 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Advance Search',
+        Text('Advanced Search',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         IconButton(
           icon: Icon(Icons.close),
@@ -60,29 +55,13 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
     );
   }
 
-  Future<void> _selectDate(BuildContext context, RxString date) async {
-    DateTime? selectedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (selectedDate != null) {
-      // date.value = DateFormat('dd-MM-yyyy').format(selectedDate);
-    }
-  }
-
-  // Dropdown Fields
-// Date Fields with Label
+  // Date Field
   Widget _buildDateField(String label, RxString date) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, // Label text above the field
-            style: TextStyle(
-              fontSize: 14,
-            )),
-        SizedBox(height: 8.0), // Add space between label and input
+        Text(label, style: TextStyle(fontSize: 14)),
+        SizedBox(height: 8.0),
         GestureDetector(
           onTap: () => _selectDate(Get.context!, date),
           child: Obx(() => TextFormField(
@@ -98,14 +77,6 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: CustomColors.borderGrey),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: CustomColors.borderGrey),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: CustomColors.borderGrey),
-                  ),
                   suffixIcon: Icon(CustomIcons.calendar),
                 ),
                 enabled: false,
@@ -116,29 +87,31 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
     );
   }
 
-// Dropdown Fields with Label
+  Future<void> _selectDate(BuildContext context, RxString date) async {
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (selectedDate != null) {
+      date.value =
+          '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
+    }
+  }
+
+  // Dropdown Field
   Widget _buildDropdownField(String label, RxString value, List<String> items) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, // Label text above the field
-            style: TextStyle(
-              fontSize: 14,
-            )),
-        SizedBox(height: 8.0), // Add space between label and input
+        Text(label, style: TextStyle(fontSize: 14)),
+        SizedBox(height: 8.0),
         Obx(() => DropdownButtonFormField<String>(
-              icon: Icon(
-                Icons.keyboard_arrow_down,
-                color: CustomColors.grey,
-              ),
-              hint: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Select',
+              icon: Icon(Icons.keyboard_arrow_down, color: CustomColors.grey),
+              hint: Text('Select',
                   style: TextStyle(
-                      color: CustomColors.grey, fontWeight: FontWeight.w400),
-                ),
-              ),
+                      color: CustomColors.grey, fontWeight: FontWeight.w400)),
               decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -146,21 +119,10 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide(color: CustomColors.borderGrey),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: CustomColors.borderGrey),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: CustomColors.borderGrey),
-                ),
               ),
               value: value.isNotEmpty ? value.value : null,
               items: items.map((item) {
-                return DropdownMenuItem(
-                  value: item,
-                  child: Text(item),
-                );
+                return DropdownMenuItem(value: item, child: Text(item));
               }).toList(),
               onChanged: (newValue) {
                 value.value = newValue ?? '';
@@ -170,23 +132,24 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
     );
   }
 
-  // Action Buttons using Container
+  // Action Buttons
   Widget _buildActions(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _buildButton('Search', CustomColors.selectionColor, () {
-          // Implement search action here
+          mainFiltercontroller.applyFilters();
+          Navigator.of(context).pop();
         }),
         SizedBox(width: 8.0),
         _buildButton('Reset', CustomColors.grey, () {
-          // Implement reset action here
+          mainFiltercontroller.resetFilters();
+          Navigator.of(context).pop();
         }),
       ],
     );
   }
 
-  // Custom Container Button
   Widget _buildButton(String label, Color color, VoidCallback onPressed) {
     return GestureDetector(
       onTap: onPressed,
@@ -202,5 +165,40 @@ class AdvancedSearchBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // Filters Based on Title
+  List<Widget> _getFiltersForTitle(String title) {
+    switch (title) {
+      case 'Enquiry':
+        return [
+          _buildDateField(
+              'Start Date', mainFiltercontroller.tempStartDate ?? ''.obs),
+          SizedBox(height: 8),
+          _buildDateField('End Date', mainFiltercontroller.tempEndDate),
+          SizedBox(height: 8),
+          _buildDropdownField('Status', mainFiltercontroller.tempStatus,
+              ['Pending', 'Completed', 'Cancelled']),
+        ];
+      case 'Sales List':
+        return [
+          _buildDateField('Start Date', mainFiltercontroller.tempStartDate),
+          SizedBox(height: 8),
+          _buildDateField('End Date', mainFiltercontroller.tempEndDate),
+          SizedBox(height: 8),
+          _buildDropdownField('Status', mainFiltercontroller.tempStatus,
+              ['Pending', 'Delivered']),
+          SizedBox(height: 8),
+          _buildDropdownField(
+              'Delivery Status',
+              mainFiltercontroller.tempDeliveryStatus,
+              ['Pending', 'Delivered']),
+          SizedBox(height: 8),
+          _buildDropdownField('Delivery Payment',
+              mainFiltercontroller.tempDeliveryPayment, ['Paid', 'Unpaid']),
+        ];
+      default:
+        return [Text('No filters available for this page.')];
+    }
   }
 }

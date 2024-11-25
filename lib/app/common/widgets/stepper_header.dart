@@ -10,16 +10,16 @@ class StepperHeader extends StatelessWidget {
   final Function onStepReached;
 
   const StepperHeader({
-    Key? key,
+    super.key,
     required this.currentStep,
     required this.steps,
     required this.onStepReached,
-  }) : super(key: key);
+  });
 
   List<EasyStep> _buildSteps() {
     return steps.asMap().entries.map((entry) {
       int index = entry.key;
-      print('its entry data => ${entry}');
+      print('its entry data => $entry');
 
       String stepTitle = entry.value;
 
@@ -83,7 +83,7 @@ class StepperHeader extends StatelessWidget {
               enableStepTapping: false,
               activeStep: currentStep.value,
               showLoadingAnimation: false,
-              lineStyle: LineStyle(
+              lineStyle: const LineStyle(
                 lineType: LineType.normal,
                 lineLength: 100,
                 defaultLineColor: CustomColors.grey,

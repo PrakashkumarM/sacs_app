@@ -8,43 +8,46 @@ import 'package:sacs_app/app/data/controllers/search_controller.dart';
 import 'package:sacs_app/app/screens/dashboard/controller.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final bool showBackButton;
+  final String showBackButtonStr; // Renamed for clarity
+  final Widget? actionButton;
+  final bool isSearchAvailable;
+  final bool isFilterAvailable;
+  final dynamic mainFiltercontroller;
+
+  CustomAppBar(
+      {required this.title,
+      this.showBackButton = true,
+      this.showBackButtonStr = '',
+      this.actionButton,
+      this.isSearchAvailable = false,
+      this.isFilterAvailable = false,
+      this.mainFiltercontroller});
+
   final SearchTextController controller = SearchTextController();
   final FilterController filterController = FilterController();
   final DashboardController dashboardController =
       Get.find<DashboardController>();
 
-  final String title;
-  final bool showBackButton;
-  final String showBackButtonStr;
-  final Widget? actionButton;
-  final bool isSearchAvailable;
-  final bool isFilterAvailable;
-
-  CustomAppBar(
-      {required this.title,
-      this.showBackButton = true,
-      this.actionButton,
-      this.isSearchAvailable = false,
-      this.isFilterAvailable = false,
-      this.showBackButtonStr = ''});
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: CustomColors.white,
-      elevation: 6, // Increase elevation to create a shadow effect
-      shadowColor: CustomColors.grey.withOpacity(0.1), // Control shadow color
+      elevation: 6,
+      shadowColor: CustomColors.grey.withOpacity(0.1),
       surfaceTintColor: CustomColors.transparent,
       leading: showBackButton
           ? IconButton(
               icon: Icon(Icons.arrow_back, color: CustomColors.black),
               onPressed: () {
-                showBackButtonStr == ''
-                    ? Navigator.of(context).pop()
-                    : showBackButtonStr == 'dashboard'
-                        ? dashboardController.changeTabIndex(0)
-                        : NavigationHelper.navigateAndClearStack(
-                            showBackButtonStr);
+                if (showBackButtonStr.isEmpty) {
+                  Navigator.of(context).pop();
+                } else if (showBackButtonStr == 'dashboard') {
+                  dashboardController.changeTabIndex(0);
+                } else {
+                  NavigationHelper.navigateAndClearStack(showBackButtonStr);
+                }
               },
             )
           : null,
@@ -60,27 +63,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (isSearchAvailable || isFilterAvailable)
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (isSearchAvailable)
                 IconButton(
                   icon:
                       Icon(Icons.search, color: CustomColors.unSelectionColor),
-                  onPressed: () {
-                    print('Search tapped');
-                    controller.showSearchBar();
-                  },
+                  onPressed: controller.showSearchBar,
                 ),
               if (isFilterAvailable)
                 IconButton(
-                  icon: Icon(
-                    CustomIcons.filter,
-                    color: CustomColors.unSelectionColor,
-                    size: 15,
-                  ),
+                  icon: Icon(CustomIcons.filter,
+                      color: CustomColors.unSelectionColor, size: 15),
                   onPressed: () {
-                    print('Filter tapped');
-                    filterController.showAdvancedSearchBottomSheet();
+                    filterController.showAdvancedSearchBottomSheet(
+                        title: title,
+                        mainFiltercontroller: mainFiltercontroller);
                   },
                 ),
             ],

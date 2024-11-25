@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sacs_app/app/core/utils/api_service.dart';
 import 'package:sacs_app/app/core/utils/snackbar_helper.dart';
@@ -11,7 +10,7 @@ class LoginService {
   Future<Map<String, dynamic>?> login(String username, String password) async {
     try {
       final response = await _apiService.dioInstance.get('/users');
-
+      print('login: $response');
       // Parsing the response to find the user with the given credentials
       final List<dynamic> users = response.data;
       final user = users.firstWhere(

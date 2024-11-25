@@ -21,7 +21,7 @@ class MainLayout extends StatelessWidget {
   final Function()? openBuilderCallBack;
   final bool resizeToAvoidBottomInset;
   final String showBackButtonStr;
-
+  final dynamic mainFiltercontroller;
   const MainLayout(
       {Key? key,
       required this.body,
@@ -37,7 +37,8 @@ class MainLayout extends StatelessWidget {
       this.stepperAvailable = true,
       this.openBuilderCallBack,
       this.resizeToAvoidBottomInset = true,
-      this.showBackButtonStr = ''})
+      this.showBackButtonStr = '',
+      this.mainFiltercontroller})
       : super(key: key);
 
   @override
@@ -56,7 +57,7 @@ class MainLayout extends StatelessWidget {
               isSearchAvailable: isSearchAvailable,
               isFilterAvailable: isFilterAvailable,
               showBackButtonStr: showBackButtonStr,
-            ),
+              mainFiltercontroller: mainFiltercontroller),
       body: stepperAvailable
           ? Container(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),

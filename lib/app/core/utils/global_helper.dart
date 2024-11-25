@@ -15,4 +15,9 @@ class GlobalHelper {
   static textFocusLoss(context) {
     FocusScope.of(context).unfocus();
   }
+
+  static String capitalize(String input) {
+    if (input.isEmpty) return input;
+    return '${input[0].toUpperCase()}${input.substring(1).toLowerCase()}';
+  }
 }

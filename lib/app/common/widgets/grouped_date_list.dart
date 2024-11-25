@@ -63,7 +63,7 @@ class GroupedDateList extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: CustomColors.darkGrey,
+                      color: CustomColors.darkRedText,
                     ),
                   ),
                 ),

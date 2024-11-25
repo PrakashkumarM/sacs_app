@@ -7,7 +7,7 @@ import 'package:sacs_app/app/core/values/colors.dart';
 class ApiService {
   final dio.Dio _dio = dio.Dio(
     dio.BaseOptions(
-      baseUrl: 'http://192.168.8.31:3000',
+      baseUrl: 'https://e280-183-82-241-158.ngrok-free.app',
       connectTimeout: Duration(milliseconds: 5000),
       receiveTimeout: Duration(milliseconds: 3000),
     ),
@@ -17,7 +17,7 @@ class ApiService {
     _dio.interceptors.add(
       dio.InterceptorsWrapper(
         onRequest: (options, handler) {
-          print('Request: ${options.method} ${options.path}');
+          print('Request: ${options.uri} ${options.path}');
           return handler.next(options); // continue
         },
         onResponse: (response, handler) {

@@ -3,37 +3,23 @@ import 'package:get/get.dart';
 import 'package:sacs_app/app/common/widgets/advance_filter.dart';
 
 class FilterController extends GetxController {
-  var startDate = ''.obs;
-  var endDate = ''.obs;
-  var deliveryStatus = ''.obs;
-  var deliveryPayment = ''.obs;
+  RxString startDate = ''.obs; // Final value
+  RxString endDate = ''.obs; // Final value
+  RxString status = ''.obs; // Final value
+  RxString deliveryStatus = ''.obs; // Final value
+  RxString deliveryPayment = ''.obs; // Final value
 
-  void updateStartDate(String date) {
-    startDate.value = date;
+  VoidCallback? filterOpenCallback;
+
+  void updateValue(RxString key, String value) {
+    key.value = value;
   }
 
-  void updateEndDate(String date) {
-    endDate.value = date;
-  }
-
-  void updateDeliveryStatus(String status) {
-    deliveryStatus.value = status;
-  }
-
-  void updateDeliveryPayment(String payment) {
-    deliveryPayment.value = payment;
-  }
-
-  void resetFields() {
-    startDate.value = '';
-    endDate.value = '';
-    deliveryStatus.value = '';
-    deliveryPayment.value = '';
-  }
-
-  void showAdvancedSearchBottomSheet() {
+  void showAdvancedSearchBottomSheet(
+      {required String title, required dynamic mainFiltercontroller}) {
     Get.bottomSheet(
-      AdvancedSearchBottomSheet(),
+      AdvancedSearchBottomSheet(
+          title: title, mainFiltercontroller: mainFiltercontroller),
       isScrollControlled: true,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(

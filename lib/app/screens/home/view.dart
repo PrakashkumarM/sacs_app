@@ -176,7 +176,7 @@ class HomeScreen extends StatelessWidget {
         'icon': TextString.medal
       },
       {
-        'title': TextString.followUpReminder,
+        'title': TextString.followUpRem,
         'value': '${dashboardData.value.followUpReminder}',
         'color': CustomColors.whiteCard,
         'textColor': CustomColors.unSelectionColor,
