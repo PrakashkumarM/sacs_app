@@ -166,7 +166,7 @@ class HomeScreen extends StatelessWidget {
         'value': '${dashboardData.value.target}',
         'color': CustomColors.greenColor,
         'textColor': CustomColors.darkGreenColor,
-        'icon': TextString.customerIcon
+        'icon': TextString.targetIcon
       },
       {
         'title': TextString.achievement,
@@ -261,8 +261,7 @@ class HomeScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 15.0, bottom: 15.0, left: 8, right: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -282,6 +281,8 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 14.0,
                         color: textColor,
                       ),
+                      textAlign: TextAlign.left, // Align text to the left
+                      maxLines: 2, // Allow text to wrap into two lines
                     ),
                   ),
                 ],
