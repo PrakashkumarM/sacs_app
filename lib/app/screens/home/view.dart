@@ -166,7 +166,7 @@ class HomeScreen extends StatelessWidget {
         'value': '${dashboardData.value.target}',
         'color': CustomColors.greenColor,
         'textColor': CustomColors.darkGreenColor,
-        'icon': TextString.customerIcon
+        'icon': TextString.targetIcon
       },
       {
         'title': TextString.achievement,
@@ -229,7 +229,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
-                childAspectRatio: 1.8,
+                childAspectRatio: 1.62,
               ),
               physics:
                   NeverScrollableScrollPhysics(), // Disable scrolling inside grid
@@ -254,19 +254,20 @@ class HomeScreen extends StatelessWidget {
   Widget _buildStatCard(String title, String value, Color color,
       Color textColor, String iconName, double screenWidth) {
     return SizedBox(
-      height: 120, // Set a fixed height for the card
+      height: 160, // Set a fixed height for the card
       child: Container(
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 15.0, bottom: 15.0, left: 8, right: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Align icon to top
                 children: [
                   Icon(
                     CustomIcons.getIconData(iconName),
@@ -278,10 +279,13 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.0,
                         color: textColor,
                       ),
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

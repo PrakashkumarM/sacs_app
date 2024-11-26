@@ -75,6 +75,7 @@ class TextString {
   static const String expandAll = "Expand All";
   static const String salesStaff = '${salesIconText} Staff';
   static const String target = "Target";
+  static const String targetIcon = "target";
   static const String yourTarget = "Your $target";
   static const String pendingTarget = "Pending $target";
   static const String totalTarget = "Total $target";
@@ -83,7 +84,7 @@ class TextString {
   static const String followUpRem = "Follow Up Reminder";
   static const String rfdList = "Ready for Delivery List";
 
-  static const String followUpReminder = "Follow Up";
+  static const String followUpReminder = "Follow Up Reminder";
   static const String cutomerFeedbackAlertContent =
       "Please get the feedback from customer and update in the below field";
   static const String readyForDelivery = "Ready For Delivery";
@@ -145,6 +146,7 @@ class TextString {
   static const String model = "Model";
   static const String customer = "Customer";
 
+  static const String feedback = "Feedback";
   static const String customerFeedback = "Customer Feedback";
   static const String noItemsFound = "No Items Found!";
   static const String plsSelect = "Please select";

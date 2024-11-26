@@ -68,104 +68,6 @@ class CustomerEnquiries extends StatelessWidget {
         SizedBox(
           height: 24,
         ),
-        // Enquiry / Sale Toggle Buttons with rounded corners and animation
-        Container(
-          decoration: BoxDecoration(
-            color:
-                CustomColors.lightGrey, // Background color for the button area
-            borderRadius: BorderRadius.circular(
-                20), // Rounded corners for the entire container
-            boxShadow: [
-              BoxShadow(
-                color: CustomColors.lightGrey.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              // Enquiry Button
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    controller.isEnquirySelected(true);
-                  },
-                  child: Obx(
-                    () => AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      decoration: BoxDecoration(
-                        color: controller.isEnquirySelected.value
-                            ? CustomColors.selectionColor
-                            : CustomColors.lightGrey,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(
-                              controller.isEnquirySelected.value ? 20 : 0),
-                          bottomRight: Radius.circular(
-                              controller.isEnquirySelected.value ? 20 : 0),
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Center(
-                        child: Text(
-                          'Enquiry',
-                          style: TextStyle(
-                            color: controller.isEnquirySelected.value
-                                ? Colors.white
-                                : Colors.black54,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Sale Button
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    controller.isEnquirySelected(false);
-                  },
-                  child: Obx(
-                    () => AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      decoration: BoxDecoration(
-                        color: !controller.isEnquirySelected.value
-                            ? CustomColors.selectionColor
-                            : CustomColors.lightGrey,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                          topLeft: Radius.circular(
-                              !controller.isEnquirySelected.value ? 20 : 0),
-                          bottomLeft: Radius.circular(
-                              !controller.isEnquirySelected.value ? 20 : 0),
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Center(
-                        child: Text(
-                          'Sale',
-                          style: TextStyle(
-                            color: !controller.isEnquirySelected.value
-                                ? Colors.white
-                                : Colors.black54,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 36),
 
         // Card with enquiry information and actions
         Card(
@@ -182,7 +84,7 @@ class CustomerEnquiries extends StatelessWidget {
                 // Enquired By
                 Row(
                   children: [
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -194,6 +96,24 @@ class CustomerEnquiries extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                           ),
+                        ),
+                        const SizedBox(height: 2),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: CustomColors.selectionColor,
+                              size: 16.0,
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            const Text(
+                              "TownHall - Madurai",
+                              style: TextStyle(color: CustomColors.grey),
+                            )
+                          ],
                         ),
                       ],
                     ),
@@ -236,32 +156,6 @@ class CustomerEnquiries extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-
-                Divider(
-                  color: CustomColors.lightGrey.withOpacity(0.5),
-                  height: 1,
-                ),
-                const SizedBox(height: 16),
-
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        color: CustomColors.selectionColor,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "TownHall - Madurai",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14),
-                      )
-                    ],
-                  ),
-                )
               ],
             ),
           ),
