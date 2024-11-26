@@ -146,6 +146,7 @@ class TextString {
   static const String model = "Model";
   static const String customer = "Customer";
 
+  static const String feedback = "Feedback";
   static const String customerFeedback = "Customer Feedback";
   static const String noItemsFound = "No Items Found!";
   static const String plsSelect = "Please select";
